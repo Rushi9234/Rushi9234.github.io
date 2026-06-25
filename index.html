@@ -94,14 +94,9 @@ body::before {
   pointer-events: none; z-index: 0;
   animation: float 20s ease-in-out infinite;
 }
-.orb-1 { width: 500px; height: 500px; top: -200px; right: -150px;
-  background: radial-gradient(circle, var(--accent2) 0%, transparent 60%); }
-.orb-2 { width: 600px; height: 600px; bottom: -200px; left: -200px;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
-  animation-delay: -7s; animation-duration: 25s; }
-.orb-3 { width: 400px; height: 400px; top: 40%; left: 50%;
-  background: radial-gradient(circle, #c0873a 0%, transparent 70%);
-  opacity: 0.15; animation-delay: -12s; animation-duration: 30s; }
+.orb-1 { width: 500px; height: 500px; top: -200px; right: -150px; background: radial-gradient(circle, var(--accent2) 0%, transparent 60%); }
+.orb-2 { width: 600px; height: 600px; bottom: -200px; left: -200px; background: radial-gradient(circle, var(--accent) 0%, transparent 60%); animation-delay: -7s; animation-duration: 25s; }
+.orb-3 { width: 400px; height: 400px; top: 40%; left: 50%; background: radial-gradient(circle, #c0873a 0%, transparent 70%); opacity: 0.15; animation-delay: -12s; animation-duration: 30s; }
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -109,36 +104,13 @@ body::before {
   66%      { transform: translate(-30px, 40px) scale(0.95); }
 }
 
-.cursor {
-  position: fixed; width: 6px; height: 6px;
-  background: var(--accent); border-radius: 50%;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  mix-blend-mode: difference;
-}
-.cursor-ring {
-  position: fixed; width: 36px; height: 36px;
-  border: 1px solid rgba(26,58,92,0.4); border-radius: 50%;
-  pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
-  transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
-}
+.cursor { position: fixed; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(26,58,92,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s; }
 
-.reveal {
-  opacity: 0; filter: blur(12px);
-  transform: translateY(30px);
-  transition: opacity 1s cubic-bezier(0.16,1,0.3,1),
-              filter 1s cubic-bezier(0.16,1,0.3,1),
-              transform 1s cubic-bezier(0.16,1,0.3,1);
-}
+.reveal { opacity: 0; filter: blur(12px); transform: translateY(30px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), filter 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
 .reveal.in { opacity: 1; filter: blur(0); transform: none; }
 
-.reveal-stagger > * {
-  opacity: 0; filter: blur(8px); transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
-              filter 0.8s cubic-bezier(0.16,1,0.3,1),
-              transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
+.reveal-stagger > * { opacity: 0; filter: blur(8px); transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
 .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
 .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.15s; }
 .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.25s; }
@@ -148,220 +120,74 @@ body::before {
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: var(--glass-nav);
-  backdrop-filter: blur(24px) saturate(1.2);
-  -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  border-bottom: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 0 4rem; height: 68px;
-  transition: padding 0.3s, height 0.3s, background 0.4s;
+  background: var(--glass-nav); backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 4rem; height: 68px; transition: padding 0.3s, height 0.3s, background 0.4s;
 }
 nav.scrolled { height: 58px; }
-.nav-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem; font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--ink); text-decoration: none;
-  position: relative;
-}
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; position: relative; }
 .nav-brand span { color: var(--accent2); font-style: italic; }
 
-.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-.nav-links a {
-  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted); text-decoration: none; font-weight: 400;
-  transition: color 0.2s; position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
-  height: 1px; background: var(--accent);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.25,1,0.5,1);
-}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 400; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(0.25,1,0.5,1); }
 .nav-links a:hover { color: var(--accent); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
-/* Theme Toggle Button Style */
-.theme-toggle-btn {
-  background: transparent;
-  border: 1px solid var(--border2);
-  color: var(--ink);
-  padding: 0.4rem 0.8rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.theme-toggle-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
+.theme-toggle-btn { background: transparent; border: 1px solid var(--border2); color: var(--ink); padding: 0.4rem 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+.theme-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-.nav-cta {
-  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--inverse-ink); background: var(--ink);
-  padding: 0.6rem 1.5rem; text-decoration: none; font-weight: 400;
-  transition: all 0.3s; position: relative; overflow: hidden;
-}
+.nav-cta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--inverse-ink); background: var(--ink); padding: 0.6rem 1.5rem; text-decoration: none; font-weight: 400; transition: all 0.3s; position: relative; overflow: hidden; }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); color: #fff; background: var(--accent2); }
 
-.hero {
-  min-height: 100vh;
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 8rem 4rem 6rem;
-  gap: 4rem; position: relative;
-}
-.hero::after {
-  content: ''; position: absolute;
-  right: 0; top: 0; bottom: 0; width: 45%;
-  background: linear-gradient(135deg, var(--bg2), var(--bg3));
-  z-index: -1;
-  transition: background 0.4s;
-}
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 6rem; gap: 4rem; position: relative; }
+.hero::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 45%; background: linear-gradient(135deg, var(--bg2), var(--bg3)); z-index: -1; transition: background 0.4s; }
 .hero-left { position: relative; z-index: 2; }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.75rem;
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--accent2); font-weight: 400; margin-bottom: 1.75rem;
-  opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
-}
-.hero-eyebrow::before {
-  content: ''; display: block; width: 28px; height: 1px;
-  background: var(--accent2);
-  animation: lineGrow 1s 0.1s ease forwards;
-}
-@webkit-keyframes lineGrow { from { width: 0; } to { width: 28px; } }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); font-weight: 400; margin-bottom: 1.75rem; opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent2); animation: lineGrow 1s 0.1s ease forwards; }
 @keyframes lineGrow { from { width: 0; } to { width: 28px; } }
 
-.hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
-  font-weight: 300; line-height: 1.02; letter-spacing: -0.015em;
-  color: var(--ink);
-  position: relative;
-}
+.hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; color: var(--ink); position: relative; }
 .hero-name em { font-style: italic; color: var(--accent); position: relative; }
 
 .word-mask { display: inline-block; overflow: hidden; vertical-align: baseline; }
-.word-mask > span {
-  display: inline-block;
-  transform: translateY(110%);
-  animation: wordUp 0.9s cubic-bezier(0.25,1,0.5,1) forwards;
-}
+.word-mask > span { display: inline-block; transform: translateY(110%); animation: wordUp 0.9s cubic-bezier(0.25,1,0.5,1) forwards; }
 .word-mask:nth-child(1) > span { animation-delay: 0.15s; }
 .word-mask:nth-child(2) > span { animation-delay: 0.3s; }
 .word-mask:nth-child(3) > span { animation-delay: 0.45s; }
 @keyframes wordUp { to { transform: translateY(0); } }
 
-.hero-divider {
-  width: 48px; height: 1px; background: var(--accent2);
-  margin: 2rem 0;
-  opacity: 0; animation: fadeUp 0.6s 0.7s ease forwards;
-}
-.hero-tagline {
-  font-size: 1rem; color: var(--ink2); max-width: 440px; line-height: 1.8;
-  opacity: 0; animation: fadeUp 0.7s 0.8s ease forwards;
-}
+.hero-divider { width: 48px; height: 1px; background: var(--accent2); margin: 2rem 0; opacity: 0; animation: fadeUp 0.6s 0.7s ease forwards; }
+.hero-tagline { font-size: 1rem; color: var(--ink2); max-width: 440px; line-height: 1.8; opacity: 0; animation: fadeUp 0.7s 0.8s ease forwards; }
 .hero-tagline strong { color: var(--ink); font-weight: 500; }
 
-.hero-cta {
-  margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.7s 0.95s ease forwards;
-}
-.btn-primary, .btn-outline {
-  padding: 0.9rem 2rem; font-size: 0.78rem; letter-spacing: 0.1em;
-  text-transform: uppercase; text-decoration: none; font-weight: 400;
-  position: relative; overflow: hidden; display: inline-flex;
-  align-items: center; gap: 0.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+.hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.95s ease forwards; }
+.btn-primary, .btn-outline { padding: 0.9rem 2rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-weight: 400; position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.3s, box-shadow 0.3s; }
 .btn-primary { background: var(--accent); color: var(--inverse-ink); border: none; cursor: pointer; font-weight: 500; }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); background: var(--accent2); color: #fff; }
 
 .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border2); }
 .btn-outline:hover { background: var(--ink); color: var(--bg); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
-.hero-right {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column; gap: 1px;
-  opacity: 0; animation: fadeLeft 0.9s 0.6s ease forwards;
-}
-.hero-stat {
-  background: var(--glass-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  padding: 1.5rem 2rem;
-  display: flex; justify-content: space-between; align-items: center;
-  transition: all 0.35s cubic-bezier(0.25,1,0.5,1);
-  position: relative; overflow: hidden;
-}
-.hero-stat::after {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 0; background: linear-gradient(180deg, var(--accent2), var(--accent));
-  transition: width 0.35s;
-}
+.hero-right { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1px; opacity: 0; animation: fadeLeft 0.9s 0.6s ease forwards; }
+.hero-stat { background: var(--glass-card); backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.35s cubic-bezier(0.25,1,0.5,1); position: relative; overflow: hidden; }
+.hero-stat::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(180deg, var(--accent2), var(--accent)); transition: width 0.35s; }
 .hero-stat:hover { transform: translateX(-4px); box-shadow: var(--shadow-md); background: var(--surface); }
 .hero-stat:hover::after { width: 3px; }
-.hero-stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem; font-weight: 300; color: var(--ink); line-height: 1;
-}
+.hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--ink); line-height: 1; }
 .hero-stat-info { text-align: right; }
 .hero-stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; }
 .hero-stat-sub { font-size: 0.82rem; color: var(--ink2); margin-top: 0.2rem; }
 
-.scroll-hint {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
-  display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
-  opacity: 0; animation: fadeUp 1s 1.5s ease forwards;
-}
-.scroll-hint::after {
-  content: ''; width: 1px; height: 32px;
-  background: linear-gradient(180deg, var(--muted), transparent);
-  animation: scrollHint 2s ease-in-out infinite;
-}
-@keyframes scrollHint {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
-  50% { opacity: 1; transform: scaleY(1); }
-}
-
-@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
-@keyframes fadeLeft { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:none; } }
-
 .section { padding: 7rem 4rem; max-width: 1240px; margin: 0 auto; position: relative; }
-.section-header {
-  display: flex; align-items: baseline; gap: 1.5rem;
-  margin-bottom: 4rem; padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-}
-.section-header::after {
-  content: ''; position: absolute; bottom: -1px; left: 0;
-  width: 80px; height: 2px;
-  background: linear-gradient(90deg, var(--accent2), transparent);
-}
+.section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 4rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); position: relative; }
+.section-header::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 80px; height: 2px; background: linear-gradient(90deg, var(--accent2), transparent); }
 .section-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.15em; flex-shrink: 0; }
 .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; letter-spacing: -0.01em; line-height: 1.1; flex: 1; }
 .section-title em { font-style: italic; color: var(--accent); }
 
-.achievement-strip {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 2.5rem 4rem; display: flex; align-items: center; gap: 2.5rem; position: relative; overflow: hidden;
-  margin-bottom: 2rem;
-}
-.achievement-badge {
-  font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--accent2); line-height: 1; flex-shrink: 0;
-}
+.achievement-strip { background: var(--bg2); border: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; align-items: center; gap: 2.5rem; position: relative; overflow: hidden; margin-bottom: 2rem; }
+.achievement-badge { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--accent2); line-height: 1; flex-shrink: 0; }
 .achievement-text { color: var(--ink); flex: 1; }
 .achievement-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 .achievement-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; line-height: 1.3; color: var(--ink); }
@@ -393,11 +219,8 @@ nav.scrolled { height: 58px; }
 .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
 
-/* ==========================================================================
-   TABBED SHOWCASE PREVIEW
-   ========================================================================== */
-.showcase-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-.tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; }
+.showcase-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; list-style: none; }
+.tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; list-style: none; }
 .tab-btn.active { border-color: var(--border) var(--border) transparent var(--border); background: var(--surface); color: var(--accent); font-weight: 500; }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
@@ -413,7 +236,7 @@ nav.scrolled { height: 58px; }
 .preview-desc { font-size: 0.95rem; color: var(--ink2); max-width: 540px; line-height: 1.75; }
 .preview-cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 
-.browser-mockup { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; }
+.browser-mockup { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; z-index: 1; }
 .browser-bar { background: var(--bg3); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.9rem; border-bottom: 1px solid var(--border); }
 .browser-dots { display: flex; gap: 0.4rem; }
 .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -424,6 +247,11 @@ nav.scrolled { height: 58px; }
 .browser-url::before { content: '🔒'; font-size: 0.65rem; opacity: 0.5; }
 .preview-frame-wrap { position: relative; background: var(--bg); min-height: 600px; }
 .preview-frame { width: 100%; min-height: 600px; border: none; display: block; background: #fff; }
+
+.preview-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 3rem; background: var(--border); border: 1px solid var(--border); }
+.preview-stat { background: var(--surface); padding: 1.5rem 1.75rem; }
+.preview-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--ink); line-height: 1; }
+.preview-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
 
 .exp-row { display: grid; grid-template-columns: 150px 1fr 160px; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; position: relative; transition: all 0.3s; }
 .exp-row::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%) scaleY(0); width: 3px; height: 70%; background: linear-gradient(180deg, var(--accent2), var(--accent)); transition: transform 0.3s; }
@@ -438,43 +266,13 @@ nav.scrolled { height: 58px; }
 .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); font-size: 0.7rem; top: 5px; }
 .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; text-align: right; padding-top: 2px; }
 
-/* ==========================================================================
-   ENGINEERING INTEGRATION GRID MODEL
-   ========================================================================== */
-.engineering-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-.matrix-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-.matrix-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent);
-}
+.engineering-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.matrix-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+.matrix-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
 .matrix-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
 .matrix-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); }
 .matrix-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; }
-.matrix-spec-box {
-  background: var(--bg2);
-  border: 1px dashed var(--border2);
-  padding: 1rem;
-  margin: 1rem 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--ink2);
-}
+.matrix-spec-box { background: var(--bg2); border: 1px dashed var(--border2); padding: 1rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink2); }
 .matrix-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 
 .timeline-wrap { position: relative; padding: 2rem 0; }
@@ -491,26 +289,15 @@ nav.scrolled { height: 58px; }
 .timeline-item.featured .timeline-dot { background: var(--accent2); animation: dotGlow 2s ease-in-out infinite; }
 @keyframes dotGlow { 0%, 100% { box-shadow: 0 0 0 2px var(--accent2), 0 0 20px rgba(192,135,58,0.5); } 50% { box-shadow: 0 0 0 2px var(--accent2), 0 0 40px rgba(192,135,58,0.9); } }
 
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-.testimonial-card { background: var(--surface); padding: 2rem; border: 1px solid var(--border); border-radius: 4px; position: relative; transition: all 0.35s; display: flex; flex-direction: column; gap: 1rem; }
-.testimonial-card::before { content: '"'; position: absolute; top: -8px; left: 16px; font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: var(--accent2); line-height: 1; opacity: 0.5; }
-.testimonial-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--accent2); }
-.testimonial-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--ink2); line-height: 1.7; position: relative; }
-.testimonial-author { display: flex; align-items: center; gap: 0.85rem; margin-top: auto; }
-.testimonial-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; flex-shrink: 0; }
-.testimonial-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
-.testimonial-role { font-size: 0.74rem; color: var(--muted); margin-top: 0.15rem; }
-
 .resume-card-wrap { background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .resume-card { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; }
-.resume-card-content { }
-.resume-card-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-.resume-card-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 125rem; }
-.resume-card-title em { font-style: italic; color: var(--accent); }
-.resume-card-desc { font-size: 0.95rem; color: var(--ink2); line-height: 1.75; margin-bottom: 2rem; max-width: 520px; }
-.resume-card-meta { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
-.resume-meta-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); padding-left: 0.9rem; position: relative; }
-.resume-meta-item::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent2); }
+.resume-pdf-preview { width: 260px; aspect-ratio: 8.5/11; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.8rem 1.2rem; position: relative; transition: transform 0.4s cubic-bezier(0.25,1,0.5,1); transform: rotate(-2deg); }
+.resume-pdf-preview:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
+.resume-name { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 500; color: var(--ink); text-align: center; line-height: 1.2; margin-bottom: 0.2rem; }
+.resume-title-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.42rem; letter-spacing: 0.1em; text-align: center; color: var(--accent2); text-transform: uppercase; margin-bottom: 0.7rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+.resume-section-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.4rem; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin: 0.65rem 0 0.3rem; font-weight: 500; }
+.resume-bar { height: 3px; background: var(--border2); margin-bottom: 3px; border-radius: 1px; }
+.resume-bar.long { width: 92%; } .resume-bar.mid { width: 75%; } .resume-bar.short { width: 50%; }
 
 .contact-wrap { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
 .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
@@ -528,13 +315,8 @@ nav.scrolled { height: 58px; }
 .form-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid var(--border2); padding: 0.65rem 0; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; transition: border-color 0.25s; }
 .form-input:focus, .form-textarea:focus { outline: none; border-bottom-color: var(--accent2); }
-.form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
-.form-textarea { resize: vertical; min-height: 80px; }
 .form-submit { margin-top: 0.5rem; padding: 0.95rem 1rem; background: var(--ink); color: var(--bg); border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; position: relative; overflow: hidden; }
 .form-submit:hover { background: var(--accent); color: var(--inverse-ink); }
-.form-note { font-size: 0.74rem; color: var(--muted); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
-.form-success { padding: 0.85rem; background: var(--ok-lt); border: 1px solid var(--ok); color: var(--ok); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.3s; display: none; }
-.form-success.show { opacity: 1; display: block; }
 
 footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
 .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--muted); }
@@ -544,31 +326,18 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 .footer-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
 
 @media (max-width: 900px) {
-  nav { padding: 0 1.25rem; }
-  .nav-links { display: none; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 1.25rem 4rem; }
-  .hero::after { display: none; }
-  .hero-right { flex-direction: row; flex-wrap: wrap; }
-  .hero-stat { flex: 1 1 calc(50% - 0.5rem); min-width: 140px; }
-  .section { padding: 4rem 1.25rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .skills-block { position: static; }
-  .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
-  .exp-date { text-align: left; }
-  .engineering-grid { grid-template-columns: 1fr; }
-  .achievement-strip { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
-  .live-preview-section { padding: 4rem 1.25rem; }
-  .preview-stats { grid-template-columns: repeat(2, 1fr); }
-  .timeline-wrap::before { left: 20px; }
-  .timeline-item { grid-template-columns: 44px 1fr; gap: 1rem; }
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content { grid-column: 2; text-align: left; }
-  .timeline-dot { grid-column: 1; justify-self: center; }
-  .resume-card-wrap { padding: 4rem 1.25rem; }
-  .resume-card { grid-template-columns: 1fr; gap: 2rem; justify-items: center; }
-  .contact-wrap { padding: 4rem 1.25rem; }
-  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-  footer { padding: 1.5rem 1.25rem; flex-direction: column; }
+  nav { padding: 0 1.25rem; } .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.25rem 4rem; } .hero::after { display: none; }
+  .hero-right { flex-direction: row; flex-wrap: wrap; } .hero-stat { flex: 1 1 calc(50% - 0.5rem); min-width: 140px; }
+  .section { padding: 4rem 1.25rem; } .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-block { position: static; } .exp-row { grid-template-columns: 1fr; gap: 0.5rem; } .exp-date { text-align: left; }
+  .engineering-grid { grid-template-columns: 1fr; } .achievement-strip { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
+  .live-preview-section { padding: 4rem 1.25rem; } .preview-stats { grid-template-columns: repeat(2, 1fr); }
+  .timeline-wrap::before { left: 20px; } .timeline-item { grid-template-columns: 44px 1fr; gap: 1rem; }
+  .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { grid-column: 2; text-align: left; }
+  .timeline-dot { grid-column: 1; justify-self: center; } .resume-card-wrap { padding: 4rem 1.25rem; }
+  .resume-card { grid-template-columns: 1fr; gap: 2rem; justify-items: center; } .contact-wrap { padding: 4rem 1.25rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; } footer { padding: 1.5rem 1.25rem; flex-direction: column; }
   .cursor, .cursor-ring { display: none; }
 }
 </style>
@@ -582,10 +351,9 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
-<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-brand">Rushikesh <span>Kedar</span></a>
- <ul class="nav-links">
+  <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#showcase">Production Live</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -603,7 +371,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   <a href="mailto:rushikedar40@gmail.com?subject=Engineering%20Opportunity" class="nav-cta">Get In Touch</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Computer Science Engineering · MITAOE Pune · 2023–2027</div>
@@ -621,7 +388,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       <a href="#projects" class="btn-outline"><span>Engineering Matrix</span></a>
     </div>
   </div>
-<div class="hero-right">
+  <div class="hero-right">
     <div class="hero-stat">
       <div class="hero-stat-num" data-count="1" data-prefix="#">#1</div>
       <div class="hero-stat-info">
@@ -650,25 +417,16 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
         <div class="hero-stat-sub">Computer Science Engineering</div>
       </div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" style="font-size:1.8rem;letter-spacing:-0.02em;">Pune</div>
-      <div class="hero-stat-info">
-        <span class="hero-stat-label">Location</span>
-        <div class="hero-stat-sub">Maharashtra, India</div>
-      </div>
-    </div>
   </div>
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- TICKER 1 -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">LangGraph</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Distributed Systems</span><span class="ticker-item">Python</span><span class="ticker-item">SQL</span><span class="ticker-item">FAISS DB</span><span class="ticker-item">XGBoost</span><span class="ticker-item">YOLOv8</span><span class="ticker-item">MongoDB</span><span class="ticker-item">Scikit-Learn</span><span class="ticker-item">Asynchronous Workers</span><span class="ticker-item">React</span><span class="ticker-item">Docker</span><span class="ticker-item">AWS Cloud</span><span class="ticker-item">SHAP Values</span>
   </div>
 </div>
 
-<!-- ACHIEVEMENT STRIP -->
 <div class="achievement-strip">
   <div class="achievement-badge">★</div>
   <div class="achievement-text">
@@ -678,7 +436,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-header reveal">
     <span class="section-num">01</span>
@@ -715,7 +472,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- TABBED LIVE PRODUCTION SHOWCASE -->
 <section class="live-preview-section" id="showcase">
   <div class="preview-inner">
     <div class="preview-header">
@@ -732,7 +488,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       <button class="tab-btn" onclick="switchTab(event, 'kf-app')">KiranaFlow Dashboard</button>
     </div>
 
-    <!-- TAB 1: JOBSEARCHY -->
     <div id="js-app" class="tab-content active">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>JobSearchy Agent:</strong> End-to-end Python engine executing parallel scraper lines with TF-IDF token matching vectors.</p>
@@ -752,7 +507,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- TAB 2: INVESTEDGE -->
     <div id="ie-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>InvestEdge Core:</strong> Processing live streaming loops via <strong>9 concurrent asynchronous background agents</strong> engineered inside FastAPI architectures.</p>
@@ -788,7 +542,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- TAB 3: KIRANAFLOW -->
     <div id="kf-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>KiranaFlow AI Engine:</strong> Fusing unmapped transaction signals with automated YOLOv8 computer vision scoring grids.</p>
@@ -817,16 +570,18 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- TICKER 2 -->
 <div class="ticker-wrap reverse" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Asynchronous Failover</span>
   </div>
 </div>
 
-<!-- WORK EXPERIENCE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; z-index:1;">
   <section class="section" id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Work <em>Experience</em></h2>
+    </div>
     <div class="reveal-stagger">
       <div class="exp-row">
         <div><div class="exp-company">BB Advisory</div><div class="exp-company-tag">Trading Analytics</div></div>
@@ -842,16 +597,14 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
-<!-- HIGH-FIDELITY RESTRUCTURED PROJECTS MATRIX -->
 <section class="section" id="projects">
   <div class="section-header reveal">
     <span class="section-num">03</span>
     <h2 class="section-title">Core Production <em>Systems</em></h2>
   </div>
   
-<div class="engineering-grid reveal-stagger">
+  <div class="engineering-grid reveal-stagger">
     
-    <!-- CARD 1: KIRANAFLOW AI -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -875,7 +628,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- CARD 2: INVESTEDGE -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -899,7 +651,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- CARD 3: CRAVECONNECT -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -923,14 +674,13 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- CARD 4: AUTOSTREAM -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
           <div class="matrix-title">AutoStream Agent — Stateful Routing Graph</div>
         </div>
         <div class="matrix-meta">State-Driven Conversation System · Execution Engine</div>
-        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">An advanced multi-turn conversation engine structured entirely around a LangGraph relational graph schema. Employs deep state memory checkpoint parameters to drive text drift down by 90%.</p>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">An advanced multi-turn conversation engine structured entirely around a LangGraph relational graph schema. Employs deep state memory checkpoint parameters to drive text drift errors down by 90%.</p>
         <div class="matrix-spec-box">
           ⚡ SYSTEM CONTEXT:<br>
           ↳ Relational Graph State Memory Nodes<br>
@@ -946,7 +696,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- CARD 5: JOBSEARCHY -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -970,7 +719,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- CARD 6: DL CAPTION GENERATOR -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -996,7 +744,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- JOURNEY TIMELINE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <section class="section" id="journey">
     <div class="section-header reveal">
@@ -1008,7 +755,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
         <div class="timeline-content">
           <div class="timeline-year">2023</div>
           <div class="timeline-title">Core Foundations at MITAOE Pune</div>
-          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development and structural data structures[cite: 2].</div>
+          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development and structural data structures.</div>
         </div>
         <div class="timeline-dot"></div>
       </div>
@@ -1024,12 +771,11 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
-
- <div class="resume-card-wrap" id="resume-hub" style="margin-top: 4rem; margin-bottom: 4rem; transition: all 0.4s ease;">
-  <div class="resume-card reveal">
+<div class="resume-card-wrap" id="resume-hub" style="padding: 6rem 4rem;">
+  <div class="resume-card">
     <div class="resume-pdf-preview" style="background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
       <div class="resume-name" style="color: var(--ink);">Rushikesh Baban Kedar</div>
-      <div class="resume-title-mini" id="mini-resume-title" style="color: var(--accent2); border-bottom: 1px solid var(--border);">AI / ML ENGINE TRACK</div>
+      <div class="resume-title-mini" id="mini-resume-title" style="color: var(--accent2); border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.45rem;">AI / ML ENGINE TRACK</div>
       <div class="resume-section-mini" style="color: var(--accent);">System Core</div>
       <div class="resume-bar long" style="background: var(--border2);"></div>
       <div class="resume-bar long" style="background: var(--border2);"></div>
@@ -1050,14 +796,13 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       <p class="resume-card-desc" id="resume-track-desc" style="font-size:0.9rem; color: var(--ink2); min-height: 60px; line-height: 1.7;">Targeted profile highlighting your LangGraph state machines, multi-agent async execution clusters, and advanced Anthropic model engineering credentials.</p>
       
       <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top: 1rem;">
-        <a href="https://drive.google.com/file/d/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d/view?usp=sharing" id="resume-download-btn" target="_blank" class="btn-primary" style="background: var(--accent); color: var(--inverse-ink); padding: 0.8rem 1.5rem; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;"><span>↓ Access Selected PDF</span></a>
+        <a href="https://drive.google.com/file/d/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d/view?usp=sharing" id="resume-download-btn" target="_blank" class="btn-primary" style="background: var(--accent); color: var(--inverse-ink); padding: 0.8rem 1.5rem; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; display: inline-flex; align-items: center; justify-content: center;"><span>↓ Access Selected PDF</span></a>
       </div>
     </div>
   </div>
 </div>
 
-   
-   <section class="section" id="credentials" style="border-top: 1px solid var(--border); padding-top: 5rem;">
+<section class="section" id="credentials" style="border-top: 1px solid var(--border); padding-top: 5rem;">
   <div class="section-header reveal">
     <span class="section-num">05</span>
     <h2 class="section-title">Credentials &amp; <em>Certifications</em></h2>
@@ -1065,7 +810,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   
   <div class="engineering-grid reveal-stagger">
     <div class="matrix-card" style="position: relative; overflow: hidden;">
-      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.05; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(-15deg);">[AI]</div>
+      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.04; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(-15deg);">[AI]</div>
       <div>
         <div class="matrix-title" style="font-size:1.2rem; color:var(--accent); margin-bottom: 0.5rem;">Anthropic Advanced Model Engineering</div>
         <div class="matrix-meta">Core GenAI Capabilities Verified</div>
@@ -1080,21 +825,20 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
     </div>
     
     <div class="matrix-card" style="position: relative; overflow: hidden;">
-      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.05; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(15deg);">AWS</div>
+      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.04; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(15deg);">AWS</div>
       <div>
         <div class="matrix-title" style="font-size:1.2rem; color:var(--accent); margin-bottom: 0.5rem;">AWS Academy Infrastructure</div>
         <div class="matrix-meta">Cloud Systems Operations</div>
         <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--ink2); line-height:1.8; margin-top: 1rem;">
           ✦ AWS Academy Cloud Foundations<br>
-          ✦ AWS Academy Architecting on AWS<br>
-          <br>
+          ✦ AWS Academy Architecting on AWS<br><br>
           <span style="color:var(--muted); font-size: 0.7rem;">Domains: EC2 Virtual Clusters, Secure S3 Resource Ingestion, Lifecycle Automation.</span>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- CONTACT FORM -->
+
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -1128,7 +872,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Rushikesh <em>Baban</em> Kedar</div>
   <div class="footer-links">
@@ -1140,7 +883,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 </footer>
 
 <script>
-
 // Specialized Resume Track Configurations
 const resumeTracks = {
   aiml: {
@@ -1170,6 +912,7 @@ function switchResumeTrack(btn, trackKey) {
   document.getElementById('resume-track-desc').textContent = data.desc;
   document.getElementById('resume-download-btn').setAttribute('href', data.link);
 }
+
 // LocalStorage Configured Dynamic Theme Swapping Engine
 function applySavedTheme() {
   const savedTheme = localStorage.getItem('portfolioTheme') || 'light';
@@ -1191,16 +934,14 @@ function toggleTheme() {
   applySavedTheme();
 }
 
-// Tab Swapping Controller
-//Showcase Tab Swapping Controller
+// Isolated Tab Swapping Controller Fix (Scoped explicitly to preview window)
 function switchTab(evt, appId) {
-  // Target only show-case specific content divs
   const showcaseSection = document.getElementById('showcase');
   const contents = showcaseSection.querySelectorAll('.tab-content');
-  contents.forEach(c => c.classList.remove('active'));
+  contents.forEach(content => content.classList.remove('active'));
   
   const buttons = showcaseSection.querySelectorAll('.tab-btn');
-  buttons.forEach(b => b.classList.remove('active'));
+  buttons.forEach(btn => btn.classList.remove('active'));
   
   document.getElementById(appId).classList.add('active');
   evt.currentTarget.classList.add('active');
