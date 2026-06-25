@@ -127,8 +127,8 @@ nav.scrolled { height: 58px; }
 .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; position: relative; }
 .nav-brand span { color: var(--accent2); font-style: italic; }
 
-.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-.nav-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 400; transition: color 0.2s; position: relative; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 400; transition: color 0.2s; position: relative; }
 .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(0.25,1,0.5,1); }
 .nav-links a:hover { color: var(--accent); }
 .nav-links a:hover::after { transform: scaleX(1); }
@@ -197,8 +197,8 @@ nav.scrolled { height: 58px; }
 .ticker-wrap { background: var(--bg2); overflow: hidden; padding: 0.95rem 0; position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .ticker-track { display: flex; animation: ticker 35s linear infinite; width: max-content; }
 .ticker-wrap.reverse .ticker-track { animation-direction: reverse; animation-duration: 40s; }
-.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); padding: 0 2.5rem; display: flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
-.ticker-item::after { content: '◆'; color: var(--accent2); font-size: 0.6rem; }
+.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2); padding: 0 2.5rem; display: flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
+.ticker-item::after { content: '◆'; color: var(--accent2); font-size: 0.6rem; margin-left: 2.5rem; }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start; }
@@ -208,7 +208,6 @@ nav.scrolled { height: 58px; }
 .about-detail-row { display: flex; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
 .about-detail-key { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; width: 95px; flex-shrink: 0; padding-top: 1px; }
 .about-detail-val { color: var(--ink2); }
-.about-detail-val a { color: var(--accent); text-decoration: none; }
 
 .skills-block { position: sticky; top: 96px; }
 .skills-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
@@ -220,7 +219,7 @@ nav.scrolled { height: 58px; }
 .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
 
 .showcase-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; list-style: none; }
-.tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; list-style: none; }
+.tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; }
 .tab-btn.active { border-color: var(--border) var(--border) transparent var(--border); background: var(--surface); color: var(--accent); font-weight: 500; }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
@@ -230,13 +229,7 @@ nav.scrolled { height: 58px; }
 .preview-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 2rem; }
 .preview-header-left { flex: 1; min-width: 300px; }
 .preview-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; display: inline-flex; align-items: center; gap: 0.6rem; }
-.preview-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); animation: pulse 2s ease infinite; }
-.preview-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1rem; }
-.preview-title em { font-style: italic; color: var(--accent); }
-.preview-desc { font-size: 0.95rem; color: var(--ink2); max-width: 540px; line-height: 1.75; }
-.preview-cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-
-.browser-mockup { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; z-index: 1; }
+.browser-mockup { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; z-index: 5; }
 .browser-bar { background: var(--bg3); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.9rem; border-bottom: 1px solid var(--border); }
 .browser-dots { display: flex; gap: 0.4rem; }
 .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -272,8 +265,7 @@ nav.scrolled { height: 58px; }
 .matrix-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
 .matrix-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); }
 .matrix-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; }
-.matrix-spec-box { background: var(--bg2); border: 1px dashed var(--border2); padding: 1rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink2); }
-.matrix-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.matrix-spec-box { background: var(--bg2); border: 1px dashed var(--border2); padding: 1rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink2); line-height: 1.5; }
 
 .timeline-wrap { position: relative; padding: 2rem 0; }
 .timeline-wrap::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent 0%, var(--border) 15%, var(--border) 85%, transparent 100%); transform: translateX(-50%); }
@@ -289,15 +281,15 @@ nav.scrolled { height: 58px; }
 .timeline-item.featured .timeline-dot { background: var(--accent2); animation: dotGlow 2s ease-in-out infinite; }
 @keyframes dotGlow { 0%, 100% { box-shadow: 0 0 0 2px var(--accent2), 0 0 20px rgba(192,135,58,0.5); } 50% { box-shadow: 0 0 0 2px var(--accent2), 0 0 40px rgba(192,135,58,0.9); } }
 
+/* Fixed Resume Layout Definitions */
 .resume-card-wrap { background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.resume-card { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; }
-.resume-pdf-preview { width: 260px; aspect-ratio: 8.5/11; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.8rem 1.2rem; position: relative; transition: transform 0.4s cubic-bezier(0.25,1,0.5,1); transform: rotate(-2deg); }
-.resume-pdf-preview:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
+.resume-card { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 3.5rem; align-items: start; }
+.resume-pdf-preview { width: 100%; aspect-ratio: 8.5/11; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.8rem 1.2rem; position: relative; }
 .resume-name { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 500; color: var(--ink); text-align: center; line-height: 1.2; margin-bottom: 0.2rem; }
-.resume-title-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.42rem; letter-spacing: 0.1em; text-align: center; color: var(--accent2); text-transform: uppercase; margin-bottom: 0.7rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+.resume-title-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.45rem; letter-spacing: 0.1em; text-align: center; color: var(--accent2); text-transform: uppercase; margin-bottom: 0.7rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 .resume-section-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.4rem; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin: 0.65rem 0 0.3rem; font-weight: 500; }
 .resume-bar { height: 3px; background: var(--border2); margin-bottom: 3px; border-radius: 1px; }
-.resume-bar.long { width: 92%; } .resume-bar.mid { width: 75%; } .resume-bar.short { width: 50%; }
+.resume-bar.long { width: 92%; } .resume-bar.mid { width: 75%; }
 
 .contact-wrap { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
 .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
@@ -351,6 +343,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
+<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-brand">Rushikesh <span>Kedar</span></a>
   <ul class="nav-links">
@@ -371,6 +364,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   <a href="mailto:rushikedar40@gmail.com?subject=Engineering%20Opportunity" class="nav-cta">Get In Touch</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Computer Science Engineering · MITAOE Pune · 2023–2027</div>
@@ -421,12 +415,14 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   <div class="scroll-hint">Scroll</div>
 </section>
 
+<!-- TICKER 1 -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">LangGraph</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Distributed Systems</span><span class="ticker-item">Python</span><span class="ticker-item">SQL</span><span class="ticker-item">FAISS DB</span><span class="ticker-item">XGBoost</span><span class="ticker-item">YOLOv8</span><span class="ticker-item">MongoDB</span><span class="ticker-item">Scikit-Learn</span><span class="ticker-item">Asynchronous Workers</span><span class="ticker-item">React</span><span class="ticker-item">Docker</span><span class="ticker-item">AWS Cloud</span><span class="ticker-item">SHAP Values</span>
+    <div class="ticker-item">LangGraph</div><div class="ticker-item">FastAPI</div><div class="ticker-item">Distributed Systems</div><div class="ticker-item">Python</div><div class="ticker-item">SQL</div><div class="ticker-item">FAISS DB</div><div class="ticker-item">XGBoost</div><div class="ticker-item">YOLOv8</div><div class="ticker-item">MongoDB</div><div class="ticker-item">Scikit-Learn</div><div class="ticker-item">Asynchronous Workers</div>
   </div>
 </div>
 
+<!-- ACHIEVEMENT STRIP -->
 <div class="achievement-strip">
   <div class="achievement-badge">★</div>
   <div class="achievement-text">
@@ -436,6 +432,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
+<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-header reveal">
     <span class="section-num">01</span>
@@ -472,6 +469,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
+<!-- TABBED LIVE PRODUCTION SHOWCASE -->
 <section class="live-preview-section" id="showcase">
   <div class="preview-inner">
     <div class="preview-header">
@@ -488,6 +486,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       <button class="tab-btn" onclick="switchTab(event, 'kf-app')">KiranaFlow Dashboard</button>
     </div>
 
+    <!-- TAB 1: JOBSEARCHY -->
     <div id="js-app" class="tab-content active">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>JobSearchy Agent:</strong> End-to-end Python engine executing parallel scraper lines with TF-IDF token matching vectors.</p>
@@ -507,6 +506,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- TAB 2: INVESTEDGE -->
     <div id="ie-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>InvestEdge Core:</strong> Processing live streaming loops via <strong>9 concurrent asynchronous background agents</strong> engineered inside FastAPI architectures.</p>
@@ -542,6 +542,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- TAB 3: KIRANAFLOW -->
     <div id="kf-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>KiranaFlow AI Engine:</strong> Fusing unmapped transaction signals with automated YOLOv8 computer vision scoring grids.</p>
@@ -561,6 +562,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- Integrated Production Showcase Metrics -->
     <div class="preview-stats">
       <div class="preview-stat"><div class="preview-stat-num" data-count="9" data-suffix=" Async Nodes">9</div><div class="preview-stat-label">InvestEdge Concurrent Agents</div></div>
       <div class="preview-stat"><div class="preview-stat-num" data-count="500" data-suffix="+">500+</div><div class="preview-stat-label">Automated Scrapes / Run</div></div>
@@ -570,12 +572,14 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
+<!-- TICKER 2 -->
 <div class="ticker-wrap reverse" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Asynchronous Failover</span>
+    <div class="ticker-item">Agentic State Boundaries</div><div class="ticker-item">High-Throughput Parsing</div><div class="ticker-item">Explainable AI (SHAP)</div><div class="ticker-item">Asynchronous Failover</div>
   </div>
 </div>
 
+<!-- WORK EXPERIENCE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; z-index:1;">
   <section class="section" id="experience">
     <div class="section-header reveal">
@@ -585,18 +589,19 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
     <div class="reveal-stagger">
       <div class="exp-row">
         <div><div class="exp-company">BB Advisory</div><div class="exp-company-tag">Trading Analytics</div></div>
-        <div><div class="exp-role">Finance &amp; Market Analytics Intern</div><ul class="exp-bullets"><li>Mastered global trading fundamentals and financial risk management principles across liquid assets.</li><li>Analyzed macro price movements and executed complex technical indicators on foreign exchange pairings, focusing primarily on <strong>USDJPY</strong> profiles.</li><li>Evaluated real-time structural trends and asset indicators inside leading digital crypto charts like <strong>BTCUSD</strong>.</li></ul></div>
+        <div><div class="exp-role">Finance &amp; Market Analytics Intern</div><ul class="exp-bullets"><li>Mastered global trading fundamentals and financial risk management principles across liquid assets.</li><li>Analyzed macro price movements and executed complex technical indicators on foreign exchange pairings, focusing primarily on <strong>USDJPY</strong> profiles.</li><li>Monitored real-time structural trends and asset indicators inside leading digital crypto charts like <strong>BTCUSD</strong>.</li></ul></div>
         <div class="exp-date">Jul – Sep 2025<br>Remote</div>
       </div>
       <div class="exp-row">
         <div><div class="exp-company">CodSoft</div><div class="exp-company-tag">Deep Learning</div></div>
-        <div><div class="exp-role">AI / ML Engineering Intern</div><ul class="exp-bullets"><li>Architected a multi-modal computer vision + NLP network processing visual matrices to natural text via ViT + GPT-2.</li><li>Integrated Hugging Face baseline models, combining visual feature mapping layers with sequence generation paths.</li><li>Wrapped logic code blocks inside a cloud-hosted Gradio interface platform for instant verification pipelines.</li></ul></div>
+        <div><div class="exp-role">AI / ML Engineering Intern</div><ul class="exp-bullets"><li>Architected a multi-modal computer vision + NLP network processing visual matrices to natural text via ViT + GPT-2.</li><li>Implemented Hugging Face baseline models, combining visual feature mapping layers with sequence generation paths.</li><li>Wrapped logic code blocks inside a cloud-hosted Gradio interface platform for instant verification pipelines.</li></ul></div>
         <div class="exp-date">Jun – Jul 2025<br>Remote</div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- CORE MATRIX SYSTEMS GRID -->
 <section class="section" id="projects">
   <div class="section-header reveal">
     <span class="section-num">03</span>
@@ -605,6 +610,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   
   <div class="engineering-grid reveal-stagger">
     
+    <!-- CARD 1: KIRANAFLOW AI -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -628,6 +634,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- CARD 2: INVESTEDGE -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -651,6 +658,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- CARD 3: CRAVECONNECT -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -674,6 +682,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- CARD 4: AUTOSTREAM -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -696,6 +705,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- CARD 5: JOBSEARCHY -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -719,6 +729,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- CARD 6: DL CAPTION GENERATOR -->
     <div class="matrix-card">
       <div>
         <div class="matrix-header">
@@ -744,6 +755,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
+<!-- JOURNEY TIMELINE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <section class="section" id="journey">
     <div class="section-header reveal">
@@ -771,22 +783,22 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
-<div class="resume-card-wrap" id="resume-hub" style="padding: 6rem 4rem;">
+<!-- INTERACTIVE RESUME SELECTOR HUB (FIXED OVERLAP GRID DESIGN) -->
+<div class="resume-card-wrap" id="resume-hub">
   <div class="resume-card">
-    <div class="resume-pdf-preview" style="background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
-      <div class="resume-name" style="color: var(--ink);">Rushikesh Baban Kedar</div>
-      <div class="resume-title-mini" id="mini-resume-title" style="color: var(--accent2); border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.45rem;">AI / ML ENGINE TRACK</div>
-      <div class="resume-section-mini" style="color: var(--accent);">System Core</div>
-      <div class="resume-bar long" style="background: var(--border2);"></div>
-      <div class="resume-bar long" style="background: var(--border2);"></div>
-      <div class="resume-section-mini" style="color: var(--accent);">Achievements</div>
-      <div class="resume-bar long" style="background: var(--border2);"></div>
-      <div class="resume-bar mid" style="background: var(--border2);"></div>
+    <div class="resume-pdf-preview">
+      <div class="resume-name">Rushikesh Baban Kedar</div>
+      <div class="resume-title-mini" id="mini-resume-title">AI / ML ENGINE TRACK</div>
+      <div class="resume-section-mini">System Core</div>
+      <div class="resume-bar long"></div><div class="resume-bar long"></div>
+      <div class="resume-section-mini">Achievements</div>
+      <div class="resume-bar long"></div><div class="resume-bar mid"></div>
     </div>
     <div class="resume-card-content" style="color: var(--ink);">
       <div class="resume-card-eyebrow" style="color: var(--accent2); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;">Interactive Resume Hub</div>
       <h2 class="resume-card-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; margin-bottom: 1.25rem;">Select targeted engineering <em>resume</em> profile.</h2>
       
+      <!-- Track Selection Sub-Tabs -->
       <div class="showcase-tabs" style="margin-bottom:1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; display: flex; gap: 0.5rem;">
         <button class="tab-btn active" style="padding:0.4rem 0.8rem; font-size:0.65rem; color: var(--ink); border: 1px solid var(--border2);" onclick="switchResumeTrack(this, 'aiml')">AI/ML Profile</button>
         <button class="tab-btn" style="padding:0.4rem 0.8rem; font-size:0.65rem; color: var(--muted); border: 1px solid transparent;" onclick="switchResumeTrack(this, 'ds')">Data Science Profile</button>
@@ -802,12 +814,12 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
+<!-- RE-INDEXED CREDENTIALS LAYER -->
 <section class="section" id="credentials" style="border-top: 1px solid var(--border); padding-top: 5rem;">
   <div class="section-header reveal">
     <span class="section-num">05</span>
     <h2 class="section-title">Credentials &amp; <em>Certifications</em></h2>
   </div>
-  
   <div class="engineering-grid reveal-stagger">
     <div class="matrix-card" style="position: relative; overflow: hidden;">
       <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.04; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(-15deg);">[AI]</div>
@@ -823,7 +835,6 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
         </div>
       </div>
     </div>
-    
     <div class="matrix-card" style="position: relative; overflow: hidden;">
       <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.04; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(15deg);">AWS</div>
       <div>
@@ -839,6 +850,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
+<!-- CONTACT FORM -->
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -872,6 +884,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Rushikesh <em>Baban</em> Kedar</div>
   <div class="footer-links">
@@ -934,7 +947,7 @@ function toggleTheme() {
   applySavedTheme();
 }
 
-// Isolated Tab Swapping Controller Fix (Scoped explicitly to preview window)
+// Scoped Dynamic Tab Controller Fix
 function switchTab(evt, appId) {
   const showcaseSection = document.getElementById('showcase');
   const contents = showcaseSection.querySelectorAll('.tab-content');
