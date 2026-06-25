@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   TOKENS & BASE
+   TOKENS & THEME ENGINE (Light Mode Defaults)
    ========================================================================== */
 :root {
   --bg:        #f7f5f0;
@@ -32,8 +32,38 @@
   --shadow-sm: 0 2px 8px rgba(26,24,20,0.04);
   --shadow-md: 0 8px 30px rgba(26,24,20,0.08);
   --shadow-lg: 0 20px 60px rgba(26,24,20,0.12);
-  --glow-accent: 0 0 40px rgba(26,58,92,0.25), 0 0 80px rgba(26,58,92,0.1);
-  --glow-gold:   0 0 40px rgba(192,135,58,0.35), 0 0 80px rgba(192,135,58,0.15);
+  --glass-nav: rgba(247,245,240,0.7);
+  --glass-card: rgba(255,255,255,0.7);
+  --inverse-ink: #ffffff;
+}
+
+/* Midnight Tech Dark Mode Overrides */
+[data-theme="dark"] {
+  --bg:        #0a121e;
+  --bg2:       #111b2d;
+  --bg3:       #18263f;
+  --surface:   #122035;
+  --border:    #1e2f4a;
+  --border2:   #2a4265;
+  --ink:       #f3f4f6;
+  --ink2:      #d1d5db;
+  --muted:     #9ca3af;
+  --accent:    #38bdf8;
+  --accent-h:  #7dd3fc;
+  --accent2:   #f59e0b;
+  --accent2-h: #fbbf24;
+  --accent-lt: rgba(56, 189, 248, 0.1);
+  --rule:      #1e2f4a;
+  --ok:        #4ade80;
+  --ok-lt:     rgba(74, 222, 128, 0.1);
+  --warn:      #fbbf24;
+  --warn-lt:   rgba(251, 191, 36, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.3);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+  --glass-nav: rgba(10, 18, 30, 0.8);
+  --glass-card: rgba(18, 32, 53, 0.7);
+  --inverse-ink: #0a121e;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,6 +77,7 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   position: relative;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 body::before {
@@ -117,15 +148,15 @@ body::before {
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: rgba(247,245,240,0.7);
+  background: var(--glass-nav);
   backdrop-filter: blur(24px) saturate(1.2);
   -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  border-bottom: 1px solid rgba(226,221,214,0.6);
+  border-bottom: 1px solid var(--border);
   display: flex; justify-content: space-between; align-items: center;
   padding: 0 4rem; height: 68px;
-  transition: padding 0.3s, height 0.3s;
+  transition: padding 0.3s, height 0.3s, background 0.4s;
 }
-nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
+nav.scrolled { height: 58px; }
 .nav-brand {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.4rem; font-weight: 500;
@@ -135,7 +166,7 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 }
 .nav-brand span { color: var(--accent2); font-style: italic; }
 
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
 .nav-links a {
   font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--muted); text-decoration: none; font-weight: 400;
@@ -150,20 +181,34 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .nav-links a:hover { color: var(--accent); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--ink);
+  padding: 0.4rem 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .nav-cta {
   font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #fff; background: var(--accent);
+  color: var(--inverse-ink); background: var(--ink);
   padding: 0.6rem 1.5rem; text-decoration: none; font-weight: 400;
   transition: all 0.3s; position: relative; overflow: hidden;
 }
-.nav-cta::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent2), var(--accent2-h));
-  transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.25,1,0.5,1);
-  z-index: -1;
-}
-.nav-cta:hover::before { transform: translateY(0); }
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,135,58,0.35); }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); color: #fff; background: var(--accent2); }
 
 .hero {
   min-height: 100vh;
@@ -177,6 +222,7 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
   right: 0; top: 0; bottom: 0; width: 45%;
   background: linear-gradient(135deg, var(--bg2), var(--bg3));
   z-index: -1;
+  transition: background 0.4s;
 }
 .hero-left { position: relative; z-index: 2; }
 
@@ -191,6 +237,7 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
   background: var(--accent2);
   animation: lineGrow 1s 0.1s ease forwards;
 }
+@webkit-keyframes lineGrow { from { width: 0; } to { width: 28px; } }
 @keyframes lineGrow { from { width: 0; } to { width: 28px; } }
 
 .hero-name {
@@ -235,19 +282,11 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
   align-items: center; gap: 0.5rem;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.btn-primary { background: var(--accent); color: #fff; border: none; cursor: pointer; }
-.btn-primary::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent2), #e0a458);
-  transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.25,1,0.5,1);
-  z-index: 0;
-}
-.btn-primary:hover::before { transform: translateX(0); }
-.btn-primary > * { position: relative; z-index: 1; }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(192,135,58,0.4); }
+.btn-primary { background: var(--accent); color: var(--inverse-ink); border: none; cursor: pointer; font-weight: 500; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); background: var(--accent2); color: #fff; }
 
-.btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-.btn-outline:hover { background: var(--accent); color: #fff; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,58,92,0.25); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border2); }
+.btn-outline:hover { background: var(--ink); color: var(--bg); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
 .hero-right {
   position: relative; z-index: 2;
@@ -255,7 +294,7 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
   opacity: 0; animation: fadeLeft 0.9s 0.6s ease forwards;
 }
 .hero-stat {
-  background: rgba(255,255,255,0.7);
+  background: var(--glass-card);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   padding: 1.5rem 2rem;
@@ -268,14 +307,11 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
   width: 0; background: linear-gradient(180deg, var(--accent2), var(--accent));
   transition: width 0.35s;
 }
-.hero-stat:hover { transform: translateX(-4px); box-shadow: var(--shadow-md); background: #fff; }
+.hero-stat:hover { transform: translateX(-4px); box-shadow: var(--shadow-md); background: var(--surface); }
 .hero-stat:hover::after { width: 3px; }
 .hero-stat-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem; font-weight: 300; color: var(--accent); line-height: 1;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 2.8rem; font-weight: 300; color: var(--ink); line-height: 1;
 }
 .hero-stat-info { text-align: right; }
 .hero-stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; }
@@ -318,36 +354,30 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .section-title em { font-style: italic; color: var(--accent); }
 
 .achievement-strip {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-h) 100%);
+  background: var(--bg2);
+  border: 1px solid var(--border);
   padding: 2.5rem 4rem; display: flex; align-items: center; gap: 2.5rem; position: relative; overflow: hidden;
+  margin-bottom: 2rem;
 }
-.achievement-strip::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(192,135,58,0.2) 0%, transparent 40%), radial-gradient(circle at 80% 50%, rgba(192,135,58,0.15) 0%, transparent 40%);
-  animation: shimmer 8s ease-in-out infinite;
-}
-.achievement-strip > * { position: relative; z-index: 1; }
 .achievement-badge {
-  font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--accent2); line-height: 1; flex-shrink: 0; text-shadow: 0 0 40px rgba(192,135,58,0.6);
-  animation: starPulse 3s ease-in-out infinite;
+  font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--accent2); line-height: 1; flex-shrink: 0;
 }
-@keyframes starPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-.achievement-text { color: #fff; flex: 1; }
-.achievement-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.5rem; }
-.achievement-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; line-height: 1.3; color: #fff; }
+.achievement-text { color: var(--ink); flex: 1; }
+.achievement-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.achievement-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; line-height: 1.3; color: var(--ink); }
 .achievement-title em { font-style: italic; color: var(--accent2); }
-.achievement-sub { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 0.45rem; line-height: 1.55; }
+.achievement-sub { font-size: 0.85rem; color: var(--ink2); margin-top: 0.45rem; line-height: 1.55; }
 
-.ticker-wrap { background: var(--ink); overflow: hidden; padding: 0.95rem 0; position: relative; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.ticker-wrap { background: var(--bg2); overflow: hidden; padding: 0.95rem 0; position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .ticker-track { display: flex; animation: ticker 35s linear infinite; width: max-content; }
 .ticker-wrap.reverse .ticker-track { animation-direction: reverse; animation-duration: 40s; }
-.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); padding: 0 2.5rem; display: flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
-.ticker-item::after { content: '◆'; color: rgba(192,135,58,0.8); font-size: 0.6rem; }
+.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); padding: 0 2.5rem; display: flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
+.ticker-item::after { content: '◆'; color: var(--accent2); font-size: 0.6rem; }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start; }
 .about-text p { font-size: 0.98rem; color: var(--ink2); margin-bottom: 1.2rem; line-height: 1.85; }
-.about-text p strong { color: var(--ink); font-weight: 500; position: relative; background: linear-gradient(180deg, transparent 65%, rgba(192,135,58,0.18) 65%); padding: 0 2px; }
+.about-text p strong { color: var(--ink); font-weight: 500; position: relative; background: linear-gradient(180deg, transparent 65%, var(--accent-lt) 65%); padding: 0 2px; }
 .about-detail { margin-top: 2.25rem; display: flex; flex-direction: column; }
 .about-detail-row { display: flex; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
 .about-detail-key { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; width: 95px; flex-shrink: 0; padding-top: 1px; }
@@ -360,11 +390,11 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .skill-cat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .skill-tag { font-size: 0.78rem; padding: 0.32rem 0.8rem; border: 1px solid var(--border2); color: var(--ink2); border-radius: 2px; background: var(--surface); transition: all 0.25s; cursor: default; }
-.skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(26,58,92,0.1); }
-.skill-tag.primary { border-color: rgba(26,58,92,0.3); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
 
 /* ==========================================================================
-   TABBED SHOWCASE PREVIEW (Visual Container Fixed Loop)
+   TABBED SHOWCASE PREVIEW
    ========================================================================== */
 .showcase-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
 .tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; }
@@ -381,10 +411,10 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .preview-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1rem; }
 .preview-title em { font-style: italic; color: var(--accent); }
 .preview-desc { font-size: 0.95rem; color: var(--ink2); max-width: 540px; line-height: 1.75; }
-.preview-cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.preview-cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 
-.browser-mockup { background: #fff; border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; }
-.browser-bar { background: linear-gradient(180deg, #f5f3ee, #ebe7de); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.9rem; border-bottom: 1px solid var(--border); }
+.browser-mockup { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,1,0.5,1), box-shadow 0.5s; position: relative; }
+.browser-bar { background: var(--bg3); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.9rem; border-bottom: 1px solid var(--border); }
 .browser-dots { display: flex; gap: 0.4rem; }
 .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
 .browser-dot.r { background: #ff5f56; }
@@ -392,62 +422,60 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .browser-dot.g { background: #27c93f; }
 .browser-url { flex: 1; background: var(--surface); border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--ink2); display: flex; align-items: center; gap: 0.5rem; }
 .browser-url::before { content: '🔒'; font-size: 0.65rem; opacity: 0.5; }
-.browser-url a { color: inherit; text-decoration: none; }
-.browser-refresh { background: transparent; border: none; color: var(--muted); font-size: 0.9rem; cursor: pointer; padding: 0.2rem; }
-.preview-frame-wrap { position: relative; background: #f7f5f0; min-height: 600px; }
+.preview-frame-wrap { position: relative; background: var(--bg); min-height: 600px; }
 .preview-frame { width: 100%; min-height: 600px; border: none; display: block; background: #fff; }
-
-.preview-loading { position: absolute; inset: 45px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; background: linear-gradient(135deg, var(--bg), var(--bg2)); transition: opacity 0.6s; pointer-events: none; }
-.preview-loading.hidden { opacity: 0; }
-.loading-bar { width: 180px; height: 2px; background: var(--border); overflow: hidden; position: relative; }
-.loading-bar::before { content: ''; position: absolute; left: -30%; top: 0; width: 30%; height: 100%; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: loadingSlide 1.5s ease-in-out infinite; }
-@keyframes loadingSlide { 0% { left: -30%; } 100% { left: 100%; } }
-
-.preview-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 3rem; background: var(--border); border: 1px solid var(--border); }
-.preview-stat { background: var(--surface); padding: 1.5rem 1.75rem; }
-.preview-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--accent); line-height: 1; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.preview-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
 
 .exp-row { display: grid; grid-template-columns: 150px 1fr 160px; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; position: relative; transition: all 0.3s; }
 .exp-row::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%) scaleY(0); width: 3px; height: 70%; background: linear-gradient(180deg, var(--accent2), var(--accent)); transition: transform 0.3s; }
 .exp-row:first-child { border-top: 1px solid var(--border); }
-.exp-row:hover { background: var(--bg); padding-left: 1.25rem; }
+.exp-row:hover { background: var(--bg3); padding-left: 1.25rem; }
 .exp-row:hover::before { transform: translateY(-50%) scaleY(1); }
 .exp-company { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); line-height: 1.3; }
 .exp-company-tag { display: inline-block; margin-top: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 0.22rem 0.55rem; background: var(--accent-lt); color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
 .exp-role { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 0.7rem; }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
-.exp-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1.15rem; position: relative; line-height: 1.6; }
+.exp-bullets li { font-size: 0.85rem; color: var(--ink2); padding-left: 1.15rem; position: relative; line-height: 1.6; }
 .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); font-size: 0.7rem; top: 5px; }
 .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; text-align: right; padding-top: 2px; }
 
-.projects-list { display: flex; flex-direction: column; }
-.project-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 2rem; padding: 2.75rem 0; border-bottom: 1px solid var(--border); align-items: start; position: relative; transition: all 0.35s cubic-bezier(0.25,1,0.5,1); }
-.project-item:first-child { border-top: 1px solid var(--border); }
-.project-item::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(192,135,58,0.04)); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
-.project-item:hover { padding-left: 1.25rem; padding-right: 1.25rem; }
-.project-item:hover::before { opacity: 1; }
-.project-num { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--rule); line-height: 1; padding-top: 4px; }
-.project-title-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
-.project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
-.live-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; padding: 0.25rem 0.6rem; background: var(--ok-lt); color: var(--ok); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #c3e0ca; display: inline-flex; align-items: center; gap: 0.4rem; }
-.live-badge::before { content: ''; width: 5px; height: 5px; background: var(--ok); border-radius: 50%; animation: pulse 2s ease infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-.win-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; padding: 0.25rem 0.6rem; background: var(--warn-lt); color: var(--warn); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #f0d9a0; position: relative; overflow: hidden; }
-
-.project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; max-width: 620px; }
-.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tag { font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; padding: 0.25rem 0.65rem; border: 1px solid var(--border2); color: var(--muted); letter-spacing: 0.05em; border-radius: 1px; }
-.project-stack { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-top: 0.7rem; line-height: 1.75; }
-.stack-label { color: var(--accent2); }
-.project-links-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-.project-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid rgba(26,58,92,0.25); padding: 0.4rem 0.85rem; transition: all 0.25s; border-radius: 1px; position: relative; overflow: hidden; }
-.project-link::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateY(100%); transition: transform 0.3s; z-index: 0; }
-.project-link:hover::before { transform: translateY(0); }
-.project-link > * { position: relative; z-index: 1; }
-.project-link:hover { color: #fff; border-color: var(--accent); }
-.project-arrow { transition: transform 0.3s, color 0.3s; font-size: 1.2rem; color: var(--muted); }
-.project-item:hover .project-arrow { transform: translate(6px,-6px); color: var(--accent); }
+/* ==========================================================================
+   ENGINEERING INTEGRATION GRID MODEL
+   ========================================================================== */
+.engineering-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.matrix-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.matrix-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+.matrix-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.matrix-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); }
+.matrix-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; }
+.matrix-spec-box {
+  background: var(--bg2);
+  border: 1px dashed var(--border2);
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink2);
+}
+.matrix-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 
 .timeline-wrap { position: relative; padding: 2rem 0; }
 .timeline-wrap::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent 0%, var(--border) 15%, var(--border) 85%, transparent 100%); transform: translateX(-50%); }
@@ -475,58 +503,45 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 
 .resume-card-wrap { background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .resume-card { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; }
-.resume-pdf-preview { width: 260px; aspect-ratio: 8.5/11; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.8rem 1.2rem; position: relative; transition: transform 0.4s cubic-bezier(0.25,1,0.5,1); transform: rotate(-2deg); }
-.resume-pdf-preview:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
-.resume-name { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 500; color: var(--ink); text-align: center; line-height: 1.2; margin-bottom: 0.2rem; }
-.resume-title-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.42rem; letter-spacing: 0.1em; text-align: center; color: var(--muted); text-transform: uppercase; margin-bottom: 0.7rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-.resume-section-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.4rem; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin: 0.65rem 0 0.3rem; font-weight: 500; }
-.resume-bar { height: 3px; background: var(--border); margin-bottom: 3px; border-radius: 1px; }
-.resume-bar.short { width: 60%; }
-.resume-bar.mid { width: 78%; }
-.resume-bar.long { width: 92%; }
-.resume-bar.accent { background: var(--accent-lt); }
+.resume-card-content { }
 .resume-card-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-.resume-card-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+.resume-card-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 125rem; }
 .resume-card-title em { font-style: italic; color: var(--accent); }
 .resume-card-desc { font-size: 0.95rem; color: var(--ink2); line-height: 1.75; margin-bottom: 2rem; max-width: 520px; }
 .resume-card-meta { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .resume-meta-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); padding-left: 0.9rem; position: relative; }
 .resume-meta-item::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent2); }
 
-.contact-wrap { background: linear-gradient(180deg, var(--accent) 0%, #10253c 100%); padding: 6rem 4rem; position: relative; overflow: hidden; }
-.contact-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 15% 30%, rgba(192,135,58,0.18) 0%, transparent 45%), radial-gradient(circle at 85% 70%, rgba(192,135,58,0.12) 0%, transparent 45%); pointer-events: none; }
+.contact-wrap { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%); padding: 6rem 4rem; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
 .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
-.contact-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 300; color: #fff; line-height: 1.05; letter-spacing: -0.02em; }
+.contact-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.02em; }
 .contact-headline em { font-style: italic; color: var(--accent2); }
-.contact-desc { margin-top: 1.75rem; font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 420px; line-height: 1.75; }
+.contact-desc { margin-top: 1.75rem; font-size: 0.95rem; color: var(--ink2); max-width: 420px; line-height: 1.75; }
 .contact-quick { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.contact-quick-link { display: flex; align-items: center; gap: 0.85rem; color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; transition: color 0.2s, transform 0.25s; padding: 0.3rem 0; }
+.contact-quick-link { display: flex; align-items: center; gap: 0.85rem; color: var(--ink2); text-decoration: none; font-size: 0.88rem; transition: color 0.2s, transform 0.25s; padding: 0.3rem 0; }
 .contact-quick-link:hover { color: var(--accent2); transform: translateX(6px); }
 .contact-quick-link span { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
 
-.contact-form { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 4px; display: flex; flex-direction: column; gap: 1.25rem; }
-.contact-form-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
+.contact-form { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; border-radius: 4px; display: flex; flex-direction: column; gap: 1.25rem; box-shadow: var(--shadow-md); }
+.contact-form-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-.form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0.65rem 0; color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; transition: border-color 0.25s; }
+.form-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid var(--border2); padding: 0.65rem 0; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; transition: border-color 0.25s; }
 .form-input:focus, .form-textarea:focus { outline: none; border-bottom-color: var(--accent2); }
-.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
 .form-textarea { resize: vertical; min-height: 80px; }
-.form-submit { margin-top: 0.5rem; padding: 0.95rem 1rem; background: var(--accent2); color: #fff; border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; position: relative; overflow: hidden; }
-.form-submit::before { content: ''; position: absolute; inset: 0; background: #fff; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.25,1,0.5,1); }
-.form-submit:hover::before { transform: translateX(0); }
-.form-submit:hover { color: var(--accent); }
-.form-submit span { position: relative; z-index: 1; }
-.form-note { font-size: 0.74rem; color: rgba(255,255,255,0.4); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
-.form-success { padding: 0.85rem; background: rgba(31,107,58,0.15); border: 1px solid rgba(31,107,58,0.3); color: #95d8a9; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.3s; display: none; }
+.form-submit { margin-top: 0.5rem; padding: 0.95rem 1rem; background: var(--ink); color: var(--bg); border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; position: relative; overflow: hidden; }
+.form-submit:hover { background: var(--accent); color: var(--inverse-ink); }
+.form-note { font-size: 0.74rem; color: var(--muted); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
+.form-success { padding: 0.85rem; background: var(--ok-lt); border: 1px solid var(--ok); color: var(--ok); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.3s; display: none; }
 .form-success.show { opacity: 1; display: block; }
 
-footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--muted); }
 .footer-brand em { color: var(--accent2); font-style: italic; }
-.footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+.footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
 .footer-links { display: flex; gap: 1.25rem; }
-.footer-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; }
+.footer-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
 
 @media (max-width: 900px) {
   nav { padding: 0 1.25rem; }
@@ -540,8 +555,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   .skills-block { position: static; }
   .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
   .exp-date { text-align: left; }
-  .project-item { grid-template-columns: 40px 1fr; }
-  .project-arrow { display: none; }
+  .engineering-grid { grid-template-columns: 1fr; }
   .achievement-strip { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
   .live-preview-section { padding: 4rem 1.25rem; }
   .preview-stats { grid-template-columns: repeat(2, 1fr); }
@@ -559,7 +573,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
 }
 </style>
 </head>
-<body>
+<body data-theme="light">
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -568,19 +582,26 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
+<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-brand">Rushikesh <span>Kedar</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#showcase">Production Live</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#projects">Matrix Systems</a></li>
     <li><a href="#journey">Journey</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li>
+      <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+        🌙 <span>Dark</span>
+      </button>
+    </li>
   </ul>
   <a href="mailto:rushikedar40@gmail.com?subject=Engineering%20Opportunity" class="nav-cta">Get In Touch</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Computer Science Engineering · MITAOE Pune · 2023–2027</div>
@@ -595,8 +616,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
     </p>
     <div class="hero-cta">
       <a href="#showcase" class="btn-primary"><span>See Live Apps</span> <span>→</span></a>
-      <a href="#projects" class="btn-outline"><span>Projects</span></a>
-      <a href="https://drive.google.com/file/d/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d?usp=sharing" target="_blank" class="btn-outline"><span>↓ Resume</span></a>
+      <a href="#projects" class="btn-outline"><span>Engineering Matrix</span></a>
     </div>
   </div>
   <div class="hero-right">
@@ -632,13 +652,14 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   <div class="scroll-hint">Scroll</div>
 </section>
 
+<!-- TICKER 1 -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">LangGraph</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Distributed Systems</span><span class="ticker-item">Python</span><span class="ticker-item">SQL</span><span class="ticker-item">FAISS DB</span><span class="ticker-item">XGBoost</span><span class="ticker-item">YOLOv8</span><span class="ticker-item">MongoDB</span><span class="ticker-item">Scikit-Learn</span><span class="ticker-item">Asynchronous Workers</span><span class="ticker-item">React</span><span class="ticker-item">Docker</span><span class="ticker-item">AWS Cloud</span><span class="ticker-item">SHAP Values</span>
     <span class="ticker-item">LangGraph</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Distributed Systems</span><span class="ticker-item">Python</span><span class="ticker-item">SQL</span><span class="ticker-item">FAISS DB</span><span class="ticker-item">XGBoost</span><span class="ticker-item">YOLOv8</span><span class="ticker-item">MongoDB</span><span class="ticker-item">Scikit-Learn</span><span class="ticker-item">Asynchronous Workers</span><span class="ticker-item">React</span><span class="ticker-item">Docker</span><span class="ticker-item">AWS Cloud</span><span class="ticker-item">SHAP Values</span>
   </div>
 </div>
 
+<!-- ACHIEVEMENT STRIP -->
 <div class="achievement-strip">
   <div class="achievement-badge">★</div>
   <div class="achievement-text">
@@ -648,6 +669,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
+<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-header reveal">
     <span class="section-num">01</span>
@@ -680,14 +702,11 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         <div class="skill-cat-label">Languages &amp; Databases</div>
         <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span><span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span><span class="skill-tag">SQLite</span><span class="skill-tag">Core DSA</span></div>
       </div>
-      <div class="skill-cat">
-        <div class="skill-cat-label">Data Engineering &amp; ML</div>
-        <div class="skill-tags"><span class="skill-tag">Scikit-Learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">YOLOv8 CV</span><span class="skill-tag">SHAP Values</span><span class="skill-tag">Feature Engineering</span><span class="skill-tag">SMOTE</span><span class="skill-tag">Pandas</span></div>
-      </div>
     </div>
   </div>
 </section>
 
+<!-- TABBED LIVE PRODUCTION SHOWCASE -->
 <section class="live-preview-section" id="showcase">
   <div class="preview-inner">
     <div class="preview-header">
@@ -704,9 +723,10 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <button class="tab-btn" onclick="switchTab(event, 'kf-app')">KiranaFlow Dashboard</button>
     </div>
 
+    <!-- TAB 1: JOBSEARCHY -->
     <div id="js-app" class="tab-content active">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>JobSearchy Agent:</strong> End-to-end Python engine that executes parallel scraping instances over 7 sources, runs vector-based matching via TF-IDF cosine loops, and schedules automatic delivery sequences.</p>
+        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>JobSearchy Agent:</strong> End-to-end Python engine executing parallel scraper lines with TF-IDF token matching vectors.</p>
         <div class="preview-cta-group">
           <a href="https://jobsearchy.onrender.com" target="_blank" class="btn-primary" style="padding:0.5rem 1.2rem; font-size:0.7rem;"><span>Launch App ↗</span></a>
           <a href="https://github.com/Rushi9234/jobsearchy" target="_blank" class="btn-outline" style="padding:0.5rem 1.2rem; font-size:0.7rem;"><span>View Repository</span></a>
@@ -723,67 +743,46 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
+    <!-- TAB 2: INVESTEDGE -->
     <div id="ie-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>InvestEdge Core:</strong> Highly scalable platform processing financial data streams through <strong>9 asynchronous intelligence agent units</strong> orchestrated over custom multi-key hot-failover loops.</p>
+        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>InvestEdge Core:</strong> Processing live streaming loops via <strong>9 concurrent asynchronous background agents</strong> engineered inside FastAPI architectures.</p>
         <div class="preview-cta-group">
           <a href="https://invest-edge-eight.vercel.app/" target="_blank" class="btn-primary" style="padding:0.5rem 1.2rem; font-size:0.7rem;"><span>Launch Live Platform ↗</span></a>
           <a href="https://github.com/AB-1817/InvestEdge" target="_blank" class="btn-outline" style="padding:0.5rem 1.2rem; font-size:0.7rem;"><span>View Repository</span></a>
         </div>
       </div>
-      
       <div class="browser-mockup">
         <div class="browser-bar">
           <div class="browser-dots"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
           <div class="browser-url">investedge.internal.logs</div>
         </div>
         <div style="background:#0e131f; padding:2.5rem; font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:#38bdf8; min-height:600px; overflow:hidden; position:relative; box-shadow:inset 0 0 40px rgba(0,0,0,0.8);">
-          
           <div style="position:absolute; inset:0; background:linear-gradient(rgba(18,24,38,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,255,255,0.03), rgba(0,0,0,0)); background-size:100% 4px, 6px 100%; pointer-events:none;"></div>
-          
           <div style="color:#64748b; margin-bottom:1.5rem; border-bottom:1px dashed #1e293b; padding-bottom:1rem;">
-            [SYSTEM CORE CONFIGURATION INITIALIZED]<br>
-            PLATFORM ARCHITECTURE: DISTRIBUTED MULTI-AGENT PIPELINE<br>
-            FAILOVER THRESHOLD MAP: MULTI-KEY ROTATION ACTIVE (99.9% MAX UPTIME)
+            [SYSTEM CORE CONFIGURATION INITIALIZED]<br>PLATFORM ARCHITECTURE: DISTRIBUTED MULTI-AGENT PIPELINE<br>FAILOVER TIMING MAP: MULTI-KEY ROTATION LAYER ENABLED
           </div>
-
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem; background:rgba(30,41,59,0.3); padding:1rem; border:1px solid #1e293b;">
-            <div><span style="color:#94a3b8;">CLUSTER MASTER:</span> <span style="color:#4ade80;">ACTIVE</span></div>
-            <div><span style="color:#94a3b8;">FASTAPI CORE:</span> <span style="color:#4ade80;">ASYNC LOOP READY</span></div>
-            <div><span style="color:#94a3b8;">FAISS VECTOR INDEX:</span> <span style="color:#34d399;">CONNECTED</span></div>
-            <div><span style="color:#94a3b8;">CREDENTIAL VAULT:</span> <span style="color:#fbbf24;">ROTATING POOL</span></div>
-          </div>
-
           <div style="margin-bottom:2rem; padding-left:0.5rem; border-left:2px solid #1e293b;">
             <div style="color:#38bdf8; font-weight:500; margin-bottom:0.75rem;">⚡ Orchestrating 9 Concurrent Streaming Agents:</div>
             <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; font-size:0.75rem;">
-              <div style="color:#4ade80;">├── [Agent 01] Stream_Parser</div>
-              <div style="color:#4ade80;">├── [Agent 02] Data_Ingestor</div>
-              <div style="color:#4ade80;">├── [Agent 03] Query_Tokenizer</div>
-              <div style="color:#a78bfa;">├── [Agent 04] FAISS_Embedder</div>
-              <div style="color:#a78bfa;">├── [Agent 05] Semantic_Matcher</div>
-              <div style="color:#a78bfa;">├── [Agent 06] Anti_Hallucinator</div>
-              <div style="color:#f43f5e;">├── [Agent 07] Token_Bucket_Mngr</div>
-              <div style="color:#f43f5e;">├── [Agent 08] Hot_Failover_Trig</div>
-              <div style="color:#e2e8f0;">└── [Agent 09] Response_Decodr</div>
+              <div style="color:#4ade80;">├── Stream_Parser</div><div style="color:#4ade80;">├── Data_Ingestor</div><div style="color:#4ade80;">├── Tokenizer</div>
+              <div style="color:#a78bfa;">├── FAISS_Embedder</div><div style="color:#a78bfa;">├── Matcher</div><div style="color:#a78bfa;">├── Anti_Hallucinator</div>
+              <div style="color:#f43f5e;">├── Bucket_Mngr</div><div style="color:#f43f5e;">├── Failover_Trig</div><div style="color:#e2e8f0;">└── Response_Decodr</div>
             </div>
           </div>
-
           <div style="color:#e2e8f0; font-size:0.75rem; display:flex; flex-direction:column; gap:0.35rem;">
-            <div><span style="color:#64748b;">[01:45:10]</span> <span style="color:#38bdf8;">INFO:</span> Booting uvicorn distributed cluster nodes...</div>
             <div><span style="color:#64748b;">[01:45:12]</span> <span style="color:#34d399;">SUCCESS:</span> FAISS vector mapping instantiated smoothly.</div>
-            <div><span style="color:#64748b;">[01:45:15]</span> <span style="color:#fbbf24;">WARN:</span> API primary target threshold approaching token usage limits.</div>
-            <div><span style="color:#64748b;">[01:45:15]</span> <span style="color:#a78bfa;">SYSTEM:</span> Middleware triggered asynchronous encryption failover sequence.</div>
-            <div><span style="color:#64748b;">[01:45:16]</span> <span style="color:#4ade80;">SUCCESS:</span> Swapped to fallback credential set without dropping transaction socket.</div>
-            <div style="color:#38bdf8; animation: pulse 1.5s infinite; margin-top:1rem;">$ awaiting downstream high-throughput processing commands... <span style="display:inline-block; width:8px; height:15px; background:#38bdf8; vertical-align:middle;"></span></div>
+            <div><span style="color:#64748b;">[01:45:15]</span> <span style="color:#a78bfa;">SYSTEM:</span> Middleware triggered asynchronous hot-failover key sequence.</div>
+            <div style="color:#38bdf8; margin-top:1rem;">$ awaiting operational pipeline analytics calls...</div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- TAB 3: KIRANAFLOW -->
     <div id="kf-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>KiranaFlow AI Engine:</strong> An unmapped multi-signal ingestion network that fuses tabular financial histories with automated YOLOv8 object-density analysis layers to calculate underwriting risks.</p>
+        <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>KiranaFlow AI Engine:</strong> Fusing unmapped transaction signals with automated YOLOv8 computer vision scoring grids.</p>
         <div class="preview-cta-group">
           <a href="https://github.com/AB-1817/KiranaFlow-AI" target="_blank" class="btn-primary" style="padding:0.5rem 1.2rem; font-size:0.7rem;"><span>View Repository ↗</span></a>
         </div>
@@ -794,40 +793,29 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
           <div class="browser-url">github.com/AB-1817/KiranaFlow-AI</div>
         </div>
         <div style="background:var(--bg3); padding:4rem; text-align:center; font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--accent);">
-          [ KiranaFlow AI Multi-Signal Terminal Running Backend Instances ]<br><br>
-          <span style="color:var(--muted); font-size:0.75rem;">YOLOv8 Abstraction Matrix &amp; XGBoost Classifiers Configured on Render Server Environment</span>
+          [ KiranaFlow AI Multi-Signal Terminal Running Ingestion Network ]<br><br>
+          <span style="color:var(--muted); font-size:0.75rem;">YOLOv8 Feature Ingestion Layer Configured with XGBoost Predictive Matrices</span>
         </div>
       </div>
     </div>
 
     <div class="preview-stats">
-      <div class="preview-stat">
-        <div class="preview-stat-num" data-count="9" data-suffix=" Async Nodes">9</div>
-        <div class="preview-stat-label">InvestEdge Concurrent Agents</div>
-      </div>
-      <div class="preview-stat">
-        <div class="preview-stat-num" data-count="500" data-suffix="+">500+</div>
-        <div class="preview-stat-label">Automated Scrapes / Run</div>
-      </div>
-      <div class="preview-stat">
-        <div class="preview-stat-num" data-count="90" data-suffix="% Efficiency">90%</div>
-        <div class="preview-stat-label">Response Drift Variation Mitigated</div>
-      </div>
-      <div class="preview-stat">
-        <div class="preview-stat-num" style="font-size:1.9rem; font-weight:500; color:var(--ok);">99.9%</div>
-        <div class="preview-stat-label">Failover Architecture Uptime</div>
-      </div>
+      <div class="preview-stat"><div class="preview-stat-num" data-count="9" data-suffix=" Async Nodes">9</div><div class="preview-stat-label">InvestEdge Concurrent Agents</div></div>
+      <div class="preview-stat"><div class="preview-stat-num" data-count="500" data-suffix="+">500+</div><div class="preview-stat-label">Automated Scrapes / Run</div></div>
+      <div class="preview-stat"><div class="preview-stat-num" data-count="90" data-suffix="% Efficiency">90%</div><div class="preview-stat-label">Response Drift Variation Mitigated</div></div>
+      <div class="preview-stat"><div class="preview-stat-num" style="font-size:1.9rem; font-weight:500; color:var(--ok);">99.9%</div><div class="preview-stat-label">Failover Architecture Uptime</div></div>
     </div>
   </div>
 </section>
 
+<!-- TICKER 2 -->
 <div class="ticker-wrap reverse" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Graph-RAG Concepts</span><span class="ticker-item">Asynchronous Failover</span><span class="ticker-item">Data Science Pipelines</span>
-    <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Graph-RAG Concepts</span><span class="ticker-item">Asynchronous Failover</span><span class="ticker-item">Data Science Pipelines</span>
+    <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Asynchronous Failover</span>
   </div>
 </div>
 
+<!-- WORK EXPERIENCE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; z-index:1;">
   <section class="section" id="experience">
     <div class="section-header reveal">
@@ -849,97 +837,116 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
+<!-- HIGH-FIDELITY RESTRUCTURED PROJECTS MATRIX -->
 <section class="section" id="projects">
   <div class="section-header reveal">
     <span class="section-num">03</span>
     <h2 class="section-title">Core Production <em>Systems</em></h2>
   </div>
-  <div class="projects-list reveal-stagger">
+  
+  <div class="engineering-grid reveal-stagger">
     
-    <div class="project-item">
-      <div class="project-num">01</div>
+    <!-- CARD 1: KIRANAFLOW AI -->
+    <div class="matrix-card">
       <div>
-        <div class="project-title-row">
-          <div class="project-title">KiranaFlow AI — Multi-Signal Credit Analytics Platform</div>
+        <div class="matrix-header">
+          <div class="matrix-title">KiranaFlow AI — Credit Analytics Platform</div>
           <span class="live-badge">Engine Active</span>
         </div>
-        <p class="project-desc">A deep-tech underwriting engine that structures messy financial histories and unmapped transactional records using an end-to-end XGBoost machine learning model pipeline. Integrates an asynchronous YOLOv8 computer vision layer to map pixel metrics and calculate store density points dynamically. Employs SHAP attribution matrices to guarantee model explainability and compliance.</p>
-        <div class="project-stack"><span class="stack-label">Stack:</span> FastAPI · MongoDB · XGBoost · YOLOv8 Computer Vision · Scikit-Learn · SHAP Values · Python</div>
-        <div class="project-links-row">
-          <a href="https://github.com/AB-1817/KiranaFlow-AI" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        <div class="matrix-meta">ML Underwriting Engine · Multi-Signal Ingestion Network</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">Structures messy financial histories and unmapped transactional records using an end-to-end XGBoost machine learning model pipeline. Integrates an asynchronous computer vision segmentation layer to automate extraction details straight from raw transactional media feeds.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM ARCHITECTURE INPUTS:<br>
+          ↳ XGBoost Predictive Pipeline Models<br>
+          ↳ YOLOv8 Computer Vision Density Abstractions<br>
+          ↳ SHAP Valuation Explanation Models
         </div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label">Stack:</span> FastAPI · MongoDB · XGBoost · YOLOv8 CV · Scikit-Learn · SHAP · Python</div>
+        <div class="project-links-row">
+          <a href="https://github.com/AB-1817/KiranaFlow-AI" class="project-link" target="_blank"><span>View Source Code ↗</span></a>
+        </div>
+      </div>
     </div>
 
-    <div class="project-item">
-      <div class="project-num">02</div>
+    <!-- CARD 2: INVESTEDGE -->
+    <div class="matrix-card">
       <div>
-        <div class="project-title-row">
-          <div class="project-title">InvestEdge — Distributed Multi-Agent Streaming Architecture</div>
-          <span class="live-badge">Live</span>
+        <div class="matrix-header">
+          <div class="matrix-title">InvestEdge — Distributed Multi-Agent Pipeline</div>
+          <span class="live-badge">Live Build</span>
         </div>
-        <p class="project-desc">A distributed network powered by **9 concurrent asynchronous AI agents** working together to query and interpret messy data streams in real time. Deploys an integrated RAG search loop over FAISS vector spaces, eliminating textual drifting variances during lookups. Features a robust FastAPI server layer engineered with custom multi-key client failover patterns to withstand severe execution restrictions.</p>
-        <div class="project-stack"><span class="stack-label">Stack:</span> Python · FastAPI · LLaMA 3.3 · RAG Architecture · FAISS Vector DB · RESTful APIs · React Dashboard</div>
-        <div class="project-links-row">
-          <a href="https://invest-edge-eight.vercel.app/" class="project-link" target="_blank"><span>Live Application ↗</span></a>
-          <a href="https://github.com/AB-1817/InvestEdge" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        <div class="matrix-meta">Distributed Platform Architecture · Scalable Backend Cluster</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">Powered by **9 concurrent asynchronous AI agents** working together to query and interpret unstructured financial data streams in real time. Deploys an integrated semantic search loop over FAISS vector spaces, eliminating textual drifting variances entirely.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM ARCHITECTURE INPUTS:<br>
+          ↳ 9 Concurrent Asynchronous Core Agent Nodes<br>
+          ↳ FAISS Context Retrieval Integration Layer<br>
+          ↳ Multi-Key Mid-Loop Client Hot-Failover Layer
         </div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label">Stack:</span> Python · FastAPI · LLaMA 3.3 · RAG · FAISS Vector DB · REST APIs · React</div>
+        <div class="project-links-row">
+          <a href="https://invest-edge-eight.vercel.app/" class="project-link" target="_blank"><span>Live App Demo ↗</span></a>
+          <a href="https://github.com/AB-1817/InvestEdge" class="project-link" target="_blank"><span>View Source Code ↗</span></a>
+        </div>
+      </div>
     </div>
 
-    <div class="project-item">
-      <div class="project-num">03</div>
+    <!-- CARD 3: AUTOSTREAM -->
+    <div class="matrix-card">
       <div>
-        <div class="project-title-row">
-          <div class="project-title">AutoStream Agent — Stateful Multi-Turn Routing Graph</div>
+        <div class="matrix-header">
+          <div class="matrix-title">AutoStream Agent — Stateful Routing Graph</div>
         </div>
-        <p class="project-desc">An advanced, state-driven multi-turn conversational AI engine structured entirely around a LangGraph relational graph schema. Employs deep memory boundary checks and state routing loops across custom data configurations, successfully driving text-drift error parameters down by 90% during operational evaluation limits.</p>
-        <div class="project-stack"><span class="stack-label">Stack:</span> Python · LangGraph · LangChain · FAISS Local Vector Spaces · Markdown Ingestion Frameworks</div>
-        <div class="project-links-row">
-          <a href="https://github.com/Rushi9234/autostream-agent" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        <div class="matrix-meta">State-Driven Conversation System · Execution Engine</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">An advanced multi-turn conversation engine structured entirely around a LangGraph relational graph schema. Employs deep state memory checkpoint parameters to drive text drift errors down by 90% during operational validation phases.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM ARCHITECTURE INPUTS:<br>
+          ↳ Relational Graph Memory Node Models<br>
+          ↳ LangGraph State Boundary Routing Checkpoints<br>
+          ↳ Automatic System Accuracy Testing Suites
         </div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label">Stack:</span> Python · LangGraph · LangChain · FAISS Local Vector Storage</div>
+        <div class="project-links-row">
+          <a href="https://github.com/Rushi9234/autostream-agent" class="project-link" target="_blank"><span>View Source Code ↗</span></a>
+        </div>
+      </div>
     </div>
 
-    <div class="project-item">
-      <div class="project-num">04</div>
+    <!-- CARD 4: JOBSEARCHY -->
+    <div class="matrix-card">
       <div>
-        <div class="project-title-row">
-          <div class="project-title">JobSearchy — Autonomous Intelligent Matching Agent</div>
-          <span class="live-badge">Live</span>
+        <div class="matrix-header">
+          <div class="matrix-title">JobSearchy — Autonomous Intelligent Matching Agent</div>
+          <span class="live-badge">Live Build</span>
         </div>
-        <p class="project-desc">An automated data engine aggregating postings from 7 distinct scrapers, sorting matches based on calculated TF-IDF text similarity maps, and pushing structured results over background Telegram and email worker pipelines. Runs an asynchronous Flask architecture connected to a secure SQLite structural schema.</p>
-        <div class="project-stack"><span class="stack-label">Stack:</span> Python · SQL · Flask · SQLite · React Engine · TF-IDF Similarity Matrix Loops</div>
-        <div class="project-links-row">
-          <a href="https://jobsearchy.onrender.com" class="project-link" target="_blank"><span>Live Application ↗</span></a>
-          <a href="https://github.com/Rushi9234/jobsearchy" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        <div class="matrix-meta">Automated Ingestion Platform · Parallel Workers</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">Aggregates postings from 7 distinct scrapers, sorting matches based on calculated TF-IDF text similarity maps, and pushing structured results over background Telegram and email worker pipelines.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM ARCHITECTURE INPUTS:<br>
+          ↳ 7 Parallel Distributed Data Scrapers<br>
+          ↳ TF-IDF Matching Cosine Similarity Iterators<br>
+          ↳ Asynchronous Notification Worker Sockets
         </div>
       </div>
-      <div class="project-arrow">↗</div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-num">05</div>
       <div>
-        <div class="project-title-row">
-          <div class="project-title">Bengaluru Market Intelligence Grid</div>
-          <span class="win-badge">Rank 1 National</span>
-        </div>
-        <p class="project-desc">Comprehensive data pipeline analyzing structural restaurant files across diverse localities. Cleaned complex unstructured distributions and built 15 visualization models to discover statistical correlations between service pricing rules and rating boundaries. Won 1st place nationally at the IIM Lucknow evaluation event.</p>
-        <div class="project-stack"><span class="stack-label">Evaluation:</span> Insightfy 6.0 Matrix · Pandas · Plotly Framework · SciPy Testing Modules</div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label">Stack:</span> Python · SQL · Flask · SQLite · React Engine · TF-IDF Matrix Loops</div>
         <div class="project-links-row">
-          <a href="https://github.com/Rushi9234/bengaluru-restaurant-market-intelligence" class="project-link" target="_blank"><span>View Source ↗</span></a>
+          <a href="https://jobsearchy.onrender.com" class="project-link" target="_blank"><span>Live App Demo ↗</span></a>
+          <a href="https://github.com/Rushi9234/jobsearchy" class="project-link" target="_blank"><span>View Source Code ↗</span></a>
         </div>
       </div>
-      <div class="project-arrow">↗</div>
     </div>
 
   </div>
 </section>
 
+<!-- JOURNEY TIMELINE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <section class="section" id="journey">
     <div class="section-header reveal">
@@ -947,74 +954,27 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <h2 class="section-title">The Engineering <em>Trajectory</em></h2>
     </div>
     <div class="timeline-wrap reveal-stagger">
-      
       <div class="timeline-item">
         <div class="timeline-content">
           <div class="timeline-year">2023</div>
           <div class="timeline-title">Core Foundations at MITAOE Pune</div>
-          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development, structural algorithms, and database systems.</div>
+          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development and structural data structures[cite: 2].</div>
         </div>
         <div class="timeline-dot"></div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">Jun – Sep 2025</div>
-          <div class="timeline-title">Dual AI &amp; Financial Analytics Tracks</div>
-          <div class="timeline-desc">Shipped transformer translation encoders at CodSoft and evaluated automated portfolio trading data structures inside BB Advisory's network.</div>
-        </div>
-      </div>
-
       <div class="timeline-item featured">
         <div class="timeline-content">
           <div class="timeline-year">★ March 2026 · Featured</div>
           <div class="timeline-title">National Victory at IIM Lucknow</div>
-          <div class="timeline-desc">Led Team Maharudra to <strong>Rank 1 across India</strong> for statistical data analysis modeling inside the Insightfy 6.0 Case Competition challenge.</div>
+          <div class="timeline-desc">Led Team Maharudra to <strong>Rank 1 across India</strong> for statistical data analysis modeling inside the Insightfy 6.0 competition event.</div>
         </div>
         <div class="timeline-dot"></div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">Apr 2026 · Shipped</div>
-          <div class="timeline-title">Architecting Multi-Agent Frameworks</div>
-          <div class="timeline-desc">Shipped InvestEdge (9 asynchronous agent graph) and KiranaFlow AI to production instances, building out clean failover layers.</div>
-        </div>
-      </div>
-
     </div>
   </section>
 </div>
 
-<div class="resume-card-wrap">
-  <div class="resume-card reveal">
-    <div class="resume-pdf-preview">
-      <div class="resume-name">Rushikesh Baban Kedar</div>
-      <div class="resume-title-mini">GenAI · FastAPI · Systems Infrastructure</div>
-      <div class="resume-section-mini">Summary</div>
-      <div class="resume-bar long"></div><div class="resume-bar long"></div><div class="resume-bar mid"></div>
-      <div class="resume-section-mini">Education</div>
-      <div class="resume-bar mid"></div><div class="resume-bar short"></div>
-      <div class="resume-section-mini">Achievements</div>
-      <div class="resume-bar long accent"></div><div class="resume-bar mid"></div>
-    </div>
-    <div class="resume-card-content">
-      <div class="resume-card-eyebrow">Downloadable · 1 Page Document · Verified ATS Compatible</div>
-      <h2 class="resume-card-title">Review the verified <em>resume</em> profile.</h2>
-      <p class="resume-card-desc">Fully formatted technical profile detailing my deep-tech framework builds, system analytics benchmarks, and multi-agent infrastructure project codes.</p>
-      <div class="resume-card-meta">
-        <span class="resume-meta-item">Updated: June 2026</span>
-        <span class="resume-meta-item">Format: Production PDF</span>
-      </div>
-      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-        <a href="https://drive.google.com/drive/folders/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d?usp=sharing" target="_blank" class="btn-primary"><span>↓ Access Drive Assets</span></a>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- CONTACT FORM -->
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -1038,10 +998,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         <input type="email" id="fEmail" class="form-input" placeholder="you@example.com" required>
       </div>
       <div class="form-group">
-        <label class="form-label" for="fSubject">Subject</label>
-        <input type="text" id="fSubject" class="form-input" placeholder="Hiring opportunity, engineering sync…">
-      </div>
-      <div class="form-group">
         <label class="form-label" for="fMessage">Message</label>
         <textarea id="fMessage" class="form-textarea" rows="4" placeholder="Detail your project requirements…" required></textarea>
       </div>
@@ -1052,6 +1008,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Rushikesh <em>Baban</em> Kedar</div>
   <div class="footer-links">
@@ -1063,6 +1020,27 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
 </footer>
 
 <script>
+// LocalStorage Configured Dynamic Theme Swapping Engine
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem('portfolioTheme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  const btn = document.getElementById('themeToggle');
+  if(savedTheme === 'dark') {
+    btn.innerHTML = `☀️ <span>Light</span>`;
+  } else {
+    btn.innerHTML = `🌙 <span>Dark</span>`;
+  }
+}
+applySavedTheme();
+
+function toggleTheme() {
+  const currentTheme = document.body.getAttribute('data-theme');
+  const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.body.setAttribute('data-theme', targetTheme);
+  localStorage.setItem('portfolioTheme', targetTheme);
+  applySavedTheme();
+}
+
 // Tab Swapping Controller
 function switchTab(evt, appId) {
   const contents = document.querySelectorAll('.tab-content');
@@ -1090,24 +1068,17 @@ function animRing() {
 }
 animRing();
 
-document.querySelectorAll('a, button, .project-item, .hero-stat').forEach(el => {
+document.querySelectorAll('a, button, .matrix-card, .hero-stat').forEach(el => {
   el.addEventListener('mouseenter', () => {
     ring.style.width='56px'; ring.style.height='56px';
-    ring.style.borderColor='rgba(192,135,58,0.55)';
+    ring.style.borderColor='var(--accent2)';
     ring.style.background='rgba(192,135,58,0.08)';
   });
   el.addEventListener('mouseleave', () => {
     ring.style.width='36px'; ring.style.height='36px';
-    ring.style.borderColor='rgba(26,58,92,0.4)';
+    ring.style.borderColor='var(--border2)';
     ring.style.background='transparent';
   });
-});
-
-// Navigation Transitions
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
 });
 
 // Scroll Triggers
@@ -1153,14 +1124,13 @@ document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
 document.getElementById('sendBtn').addEventListener('click', () => {
   const name = document.getElementById('fName').value.trim();
   const email = document.getElementById('fEmail').value.trim();
-  const subject = document.getElementById('fSubject').value.trim() || 'System Integration Query';
   const message = document.getElementById('fMessage').value.trim();
   if (!name || !email || !message) {
-    alert('Required validation variables missing.');
+    alert('Required variables missing.');
     return;
   }
   const body = encodeURIComponent(`Hi Rushikesh,\n\n${message}\n\n— ${name}\n${email}`);
-  window.location.href = `mailto:rushikedar40@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  window.location.href = `mailto:rushikedar40@gmail.com?subject=Engineering Connect Sync&body=${body}`;
   document.getElementById('formSuccess').classList.add('show');
   setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 4000);
 });
