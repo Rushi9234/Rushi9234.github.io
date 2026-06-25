@@ -585,12 +585,13 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 <!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-brand">Rushikesh <span>Kedar</span></a>
-  <ul class="nav-links">
+ <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#showcase">Production Live</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Matrix Systems</a></li>
     <li><a href="#journey">Journey</a></li>
+    <li><a href="#resume-hub">Resume Hub</a></li>
     <li><a href="#credentials">Credentials</a></li>
     <li><a href="#contact">Contact</a></li>
     <li>
@@ -1024,30 +1025,32 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
 </div>
 
 
-   <div class="resume-card-wrap" id="resume-hub" style="margin-top: 5rem;">
+ <div class="resume-card-wrap" id="resume-hub" style="margin-top: 4rem; margin-bottom: 4rem; transition: all 0.4s ease;">
   <div class="resume-card reveal">
-    <div class="resume-pdf-preview">
-      <div class="resume-name">Rushikesh Baban Kedar</div>
-      <div class="resume-title-mini" id="mini-resume-title">AI / ML ENGINE TRACK</div>
-      <div class="resume-section-mini">System Core</div>
-      <div class="resume-bar long"></div><div class="resume-bar long"></div>
-      <div class="resume-section-mini">Achievements</div>
-      <div class="resume-bar long"></div><div class="resume-bar mid"></div>
+    <div class="resume-pdf-preview" style="background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
+      <div class="resume-name" style="color: var(--ink);">Rushikesh Baban Kedar</div>
+      <div class="resume-title-mini" id="mini-resume-title" style="color: var(--accent2); border-bottom: 1px solid var(--border);">AI / ML ENGINE TRACK</div>
+      <div class="resume-section-mini" style="color: var(--accent);">System Core</div>
+      <div class="resume-bar long" style="background: var(--border2);"></div>
+      <div class="resume-bar long" style="background: var(--border2);"></div>
+      <div class="resume-section-mini" style="color: var(--accent);">Achievements</div>
+      <div class="resume-bar long" style="background: var(--border2);"></div>
+      <div class="resume-bar mid" style="background: var(--border2);"></div>
     </div>
-    <div class="resume-card-content">
-      <div class="resume-card-eyebrow">Interactive Resume Hub</div>
-      <h2 class="resume-card-title">Select targeted engineering <em>resume</em> profile.</h2>
+    <div class="resume-card-content" style="color: var(--ink);">
+      <div class="resume-card-eyebrow" style="color: var(--accent2); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;">Interactive Resume Hub</div>
+      <h2 class="resume-card-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; margin-bottom: 1.25rem;">Select targeted engineering <em>resume</em> profile.</h2>
       
-      <div class="showcase-tabs" style="margin-bottom:1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
-        <button class="tab-btn active" style="padding:0.4rem 0.8rem; font-size:0.65rem;" onclick="switchResumeTrack(this, 'aiml')">AI/ML Profile</button>
-        <button class="tab-btn" style="padding:0.4rem 0.8rem; font-size:0.65rem;" onclick="switchResumeTrack(this, 'ds')">Data Science Profile</button>
-        <button class="tab-btn" style="padding:0.4rem 0.8rem; font-size:0.65rem;" onclick="switchResumeTrack(this, 'sde')">Full-Stack SDE Profile</button>
+      <div class="showcase-tabs" style="margin-bottom:1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; display: flex; gap: 0.5rem;">
+        <button class="tab-btn active" style="padding:0.4rem 0.8rem; font-size:0.65rem; color: var(--ink); border: 1px solid var(--border2);" onclick="switchResumeTrack(this, 'aiml')">AI/ML Profile</button>
+        <button class="tab-btn" style="padding:0.4rem 0.8rem; font-size:0.65rem; color: var(--muted); border: 1px solid transparent;" onclick="switchResumeTrack(this, 'ds')">Data Science Profile</button>
+        <button class="tab-btn" style="padding:0.4rem 0.8rem; font-size:0.65rem; color: var(--muted); border: 1px solid transparent;" onclick="switchResumeTrack(this, 'sde')">Full-Stack SDE Profile</button>
       </div>
 
-      <p class="resume-card-desc" id="resume-track-desc" style="font-size:0.9rem; color: var(--ink2); min-height: 60px;">Targeted profile highlighting your LangGraph state machines, multi-agent async execution clusters, and advanced Anthropic model engineering credentials.</p>
+      <p class="resume-card-desc" id="resume-track-desc" style="font-size:0.9rem; color: var(--ink2); min-height: 60px; line-height: 1.7;">Targeted profile highlighting your LangGraph state machines, multi-agent async execution clusters, and advanced Anthropic model engineering credentials.</p>
       
       <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top: 1rem;">
-        <a href="https://drive.google.com/file/d/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d/view?usp=sharing" id="resume-download-btn" target="_blank" class="btn-primary"><span>↓ Access Selected PDF</span></a>
+        <a href="https://drive.google.com/file/d/1EwuIqai2G52Nw_R3AN6vUZYUkSeRJo7d/view?usp=sharing" id="resume-download-btn" target="_blank" class="btn-primary" style="background: var(--accent); color: var(--inverse-ink); padding: 0.8rem 1.5rem; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;"><span>↓ Access Selected PDF</span></a>
       </div>
     </div>
   </div>
@@ -1056,11 +1059,13 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
    
    <section class="section" id="credentials" style="border-top: 1px solid var(--border); padding-top: 5rem;">
   <div class="section-header reveal">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <h2 class="section-title">Credentials &amp; <em>Certifications</em></h2>
   </div>
+  
   <div class="engineering-grid reveal-stagger">
-    <div class="matrix-card">
+    <div class="matrix-card" style="position: relative; overflow: hidden;">
+      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.05; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(-15deg);">[AI]</div>
       <div>
         <div class="matrix-title" style="font-size:1.2rem; color:var(--accent); margin-bottom: 0.5rem;">Anthropic Advanced Model Engineering</div>
         <div class="matrix-meta">Core GenAI Capabilities Verified</div>
@@ -1073,7 +1078,9 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
         </div>
       </div>
     </div>
-    <div class="matrix-card">
+    
+    <div class="matrix-card" style="position: relative; overflow: hidden;">
+      <div style="position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.05; font-family: 'JetBrains Mono'; color: var(--accent); pointer-events: none; transform: rotate(15deg);">AWS</div>
       <div>
         <div class="matrix-title" style="font-size:1.2rem; color:var(--accent); margin-bottom: 0.5rem;">AWS Academy Infrastructure</div>
         <div class="matrix-meta">Cloud Systems Operations</div>
@@ -1081,7 +1088,7 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
           ✦ AWS Academy Cloud Foundations<br>
           ✦ AWS Academy Architecting on AWS<br>
           <br>
-          <span style="color:var(--muted); font-size: 0.7rem;">Verified domains: EC2 Virtual Clusters, Secure S3 Resource Ingestion, Lifecycle Automation, IAM Credential Policies.</span>
+          <span style="color:var(--muted); font-size: 0.7rem;">Domains: EC2 Virtual Clusters, Secure S3 Resource Ingestion, Lifecycle Automation.</span>
         </div>
       </div>
     </div>
@@ -1185,12 +1192,15 @@ function toggleTheme() {
 }
 
 // Tab Swapping Controller
+//Showcase Tab Swapping Controller
 function switchTab(evt, appId) {
-  const contents = document.querySelectorAll('.tab-content');
-  contents.forEach(content => content.classList.remove('active'));
+  // Target only show-case specific content divs
+  const showcaseSection = document.getElementById('showcase');
+  const contents = showcaseSection.querySelectorAll('.tab-content');
+  contents.forEach(c => c.classList.remove('active'));
   
-  const buttons = document.querySelectorAll('.tab-btn');
-  buttons.forEach(btn => btn.classList.remove('active'));
+  const buttons = showcaseSection.querySelectorAll('.tab-btn');
+  buttons.forEach(b => b.classList.remove('active'));
   
   document.getElementById(appId).classList.add('active');
   evt.currentTarget.classList.add('active');
