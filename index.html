@@ -202,7 +202,7 @@ nav.scrolled { height: 58px; }
 .ticker-wrap { background: var(--bg2); overflow: hidden; padding: 0.95rem 0; position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .ticker-track { display: flex; animation: ticker 35s linear infinite; width: max-content; }
 .ticker-wrap.reverse .ticker-track { animation-direction: reverse; animation-duration: 40s; }
-.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2); padding: 0 2.5rem; display: flex; align-items: center; gap: 2.5rem; white-space: nowrap; }
+.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink2); padding: 0.4rem; display: flex; align-items: center; white-space: nowrap; }
 .ticker-item::after { content: '◆'; color: var(--accent2); font-size: 0.6rem; margin-left: 2.5rem; }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -385,7 +385,8 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
       <a href="#showcase" class="btn-primary"><span>See Live Apps</span> <span>→</span></a>
       <a href="#projects" class="btn-outline"><span>Engineering Matrix</span></a>
     </div>
-  </div> <div class="hero-right">
+  </div> 
+   <div class="hero-right">
     <div class="hero-stat">
       <div class="hero-stat-num" data-count="1" data-prefix="#">#1</div>
       <div class="hero-stat-info">
@@ -866,37 +867,27 @@ footer { background: var(--bg2); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- CONTACT FORM -->
-<div class="contact-wrap" id="contact">
-  <div class="contact-inner">
-    <div class="reveal">
-      <h2 class="contact-headline">Initiate a<br>technical <em>system</em><br>together.</h2>
-      <p class="contact-desc">Open to core backend engineering roles, agentic development projects, and scalable infrastructure challenges. Response turnaround within 24 hours.</p>
-      <div class="contact-quick">
-        <a href="mailto:rushikedar40@gmail.com" class="contact-quick-link">✉ <span>rushikedar40@gmail.com</span></a>
-        <a href="tel:+918605453442" class="contact-quick-link">☎ <span>+91 8605453442</span></a>
-        <a href="https://linkedin.com/in/rushikeshkedar1914" target="_blank" class="contact-quick-link">◈ <span>linkedin.com/in/rushikeshkedar1914</span></a>
-        <a href="https://github.com/Rushi9234" target="_blank" class="contact-quick-link">⌥ <span>github.com/Rushi9234</span></a>
-      </div>
+<div class="contact-form reveal">
+  <div class="contact-form-title">Send a profile query</div>
+  <!-- Note: ID changed to contact-form to match the JavaScript trigger -->
+  <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+    <div class="form-group">
+      <label class="form-label" for="user_name">Name</label>
+      <input type="text" id="user_name" name="user_name" class="form-input" placeholder="Your full name" required>
     </div>
-    <div class="contact-form reveal">
-      <div class="contact-form-title">Send a profile query</div>
-      <div class="form-group">
-        <label class="form-label" for="fName">Name</label>
-        <input type="text" id="fName" class="form-input" placeholder="Your full name" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="fEmail">Email</label>
-        <input type="email" id="fEmail" class="form-input" placeholder="you@example.com" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="fMessage">Message</label>
-        <textarea id="fMessage" class="form-textarea" rows="4" placeholder="Detail your project requirements…" required></textarea>
-      </div>
-      <button type="button" class="form-submit" id="sendBtn"><span>Let's Connect</span></button>
-      <div class="form-note">Opens an integrated mail gateway window.</div>
-      <div class="form-success" id="formSuccess">✓ Message sequence initiated successfully.</div>
+    <div class="form-group">
+      <label class="form-label" for="user_email">Email</label>
+      <input type="email" id="user_email" name="user_email" class="form-input" placeholder="you@example.com" required>
     </div>
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Detail your project requirements…" required></textarea>
+    </div>
+    <button type="submit" class="form-submit" id="sendBtn"><span>Send Payload</span></button>
+  </form>
+  <div class="form-note">Direct encrypted transmission to inbox.</div>
+  <div class="form-success" id="formSuccess">✓ Transmission confirmed: Message received!</div>
+</div>
   </div>
 </div>
 
@@ -1044,18 +1035,21 @@ const countObs = new IntersectionObserver(entries => {
 document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
 
 // Contact Dispatcher
-document.getElementById('sendBtn').addEventListener('click', () => {
-  const name = document.getElementById('fName').value.trim();
-  const email = document.getElementById('fEmail').value.trim();
-  const message = document.getElementById('fMessage').value.trim();
-  if (!name || !email || !message) {
-    alert('Required variables missing.');
-    return;
-  }
-  const body = encodeURIComponent(`Hi Rushikesh,\n\n${message}\n\n— ${name}\n${email}`);
-  window.location.href = `mailto:rushikedar40@gmail.com?subject=Engineering Connect Sync&body=${body}`;
-  document.getElementById('formSuccess').classList.add('show');
-  setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 4000);
+// New Live Email Dispatcher (replaces the Contact Dispatcher)
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // 'service_q8sdrkl' is your Service ID, 'template_naf6d6e' is your Template ID
+  emailjs.sendForm('service_q8sdrkl', 'template_naf6d6e', this)
+    .then(function() {
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      document.getElementById('contact-form').reset();
+      setTimeout(() => { success.style.display = 'none'; }, 4000);
+    }, function(error) {
+      console.error('EmailJS Error:', error);
+      alert('Transmission failed: Check your console for details.');
+    });
 });
 </script>
 </body>
