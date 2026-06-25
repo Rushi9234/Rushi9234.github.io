@@ -17,7 +17,7 @@
   --border:    #e2ddd6;
   --border2:   #ccc8bf;
   --ink:       #1a1814;
-  --ink2: #3d3a34;
+  --ink2:      #3d3a34;
   --muted:     #8a857c;
   --accent:    #1a3a5c;
   --accent-h:  #245380;
@@ -364,7 +364,7 @@ nav.scrolled { height: 58px; background: rgba(247,245,240,0.92); }
 .skill-tag.primary { border-color: rgba(26,58,92,0.3); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
 
 /* ==========================================================================
-   TABBED SHOWCASE PREVIEW
+   TABBED SHOWCASE PREVIEW (Visual Container Fixed Loop)
    ========================================================================== */
 .showcase-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
 .tab-btn { background: transparent; border: 1px solid transparent; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.3s; }
@@ -568,7 +568,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
-<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-brand">Rushikesh <span>Kedar</span></a>
   <ul class="nav-links">
@@ -579,10 +578,9 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
     <li><a href="#journey">Journey</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:rushikedar40@gmail.com?subject=Hiring%20Opportunity" class="nav-cta">Hire Me</a>
+  <a href="mailto:rushikedar40@gmail.com?subject=Engineering%20Opportunity" class="nav-cta">Get In Touch</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Computer Science Engineering · MITAOE Pune · 2023–2027</div>
@@ -634,7 +632,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- TICKER 1 -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">LangGraph</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Distributed Systems</span><span class="ticker-item">Python</span><span class="ticker-item">SQL</span><span class="ticker-item">FAISS DB</span><span class="ticker-item">XGBoost</span><span class="ticker-item">YOLOv8</span><span class="ticker-item">MongoDB</span><span class="ticker-item">Scikit-Learn</span><span class="ticker-item">Asynchronous Workers</span><span class="ticker-item">React</span><span class="ticker-item">Docker</span><span class="ticker-item">AWS Cloud</span><span class="ticker-item">SHAP Values</span>
@@ -642,7 +639,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- ACHIEVEMENT STRIP -->
 <div class="achievement-strip">
   <div class="achievement-badge">★</div>
   <div class="achievement-text">
@@ -652,7 +648,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-header reveal">
     <span class="section-num">01</span>
@@ -693,10 +688,9 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- TABBED LIVE PRODUCTION SHOWCASE -->
 <section class="live-preview-section" id="showcase">
   <div class="preview-inner">
-    <div class="preview-header reveal">
+    <div class="preview-header">
       <div class="preview-header-left">
         <div class="preview-eyebrow">Active Apps Showcase</div>
         <h2 class="preview-title">Live Production <em>Deployments</em></h2>
@@ -704,14 +698,13 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <div class="showcase-tabs reveal">
+    <div class="showcase-tabs">
       <button class="tab-btn active" onclick="switchTab(event, 'js-app')">JobSearchy Platform</button>
       <button class="tab-btn" onclick="switchTab(event, 'ie-app')">InvestEdge Engine</button>
       <button class="tab-btn" onclick="switchTab(event, 'kf-app')">KiranaFlow Dashboard</button>
     </div>
 
-    <!-- TAB 1: JOBSEARCHY -->
-    <div id="js-app" class="tab-content active reveal">
+    <div id="js-app" class="tab-content active">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>JobSearchy Agent:</strong> End-to-end Python engine that executes parallel scraping instances over 7 sources, runs vector-based matching via TF-IDF cosine loops, and schedules automatic delivery sequences.</p>
         <div class="preview-cta-group">
@@ -730,8 +723,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <!-- TAB 2: INVESTEDGE -->
-    <div id="ie-app" class="tab-content reveal">
+    <div id="ie-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>InvestEdge Core:</strong> Highly scalable platform processing financial data streams through <strong>9 asynchronous intelligence agent units</strong> orchestrated over custom multi-key hot-failover loops.</p>
         <div class="preview-cta-group">
@@ -740,7 +732,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         </div>
       </div>
       
-      <!-- High-Fidelity Interactive Backend Terminal Simulation -->
       <div class="browser-mockup">
         <div class="browser-bar">
           <div class="browser-dots"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
@@ -748,17 +739,14 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         </div>
         <div style="background:#0e131f; padding:2.5rem; font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:#38bdf8; min-height:600px; overflow:hidden; position:relative; box-shadow:inset 0 0 40px rgba(0,0,0,0.8);">
           
-          <!-- Animated Scanline Grid for Retro Terminal Aesthetic -->
           <div style="position:absolute; inset:0; background:linear-gradient(rgba(18,24,38,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,255,255,0.03), rgba(0,0,0,0)); background-size:100% 4px, 6px 100%; pointer-events:none;"></div>
           
-          <!-- Terminal Header Block -->
           <div style="color:#64748b; margin-bottom:1.5rem; border-bottom:1px dashed #1e293b; padding-bottom:1rem;">
             [SYSTEM CORE CONFIGURATION INITIALIZED]<br>
             PLATFORM ARCHITECTURE: DISTRIBUTED MULTI-AGENT PIPELINE<br>
             FAILOVER THRESHOLD MAP: MULTI-KEY ROTATION ACTIVE (99.9% MAX UPTIME)
           </div>
 
-          <!-- Live Cluster Status Metrics Visualizer -->
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem; background:rgba(30,41,59,0.3); padding:1rem; border:1px solid #1e293b;">
             <div><span style="color:#94a3b8;">CLUSTER MASTER:</span> <span style="color:#4ade80;">ACTIVE</span></div>
             <div><span style="color:#94a3b8;">FASTAPI CORE:</span> <span style="color:#4ade80;">ASYNC LOOP READY</span></div>
@@ -766,7 +754,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
             <div><span style="color:#94a3b8;">CREDENTIAL VAULT:</span> <span style="color:#fbbf24;">ROTATING POOL</span></div>
           </div>
 
-          <!-- Dynamic Orchestrated 9-Agent Tree Visualizer -->
           <div style="margin-bottom:2rem; padding-left:0.5rem; border-left:2px solid #1e293b;">
             <div style="color:#38bdf8; font-weight:500; margin-bottom:0.75rem;">⚡ Orchestrating 9 Concurrent Streaming Agents:</div>
             <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; font-size:0.75rem;">
@@ -782,7 +769,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
             </div>
           </div>
 
-          <!-- Simulating Live Log Stream Lines -->
           <div style="color:#e2e8f0; font-size:0.75rem; display:flex; flex-direction:column; gap:0.35rem;">
             <div><span style="color:#64748b;">[01:45:10]</span> <span style="color:#38bdf8;">INFO:</span> Booting uvicorn distributed cluster nodes...</div>
             <div><span style="color:#64748b;">[01:45:12]</span> <span style="color:#34d399;">SUCCESS:</span> FAISS vector mapping instantiated smoothly.</div>
@@ -791,13 +777,11 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
             <div><span style="color:#64748b;">[01:45:16]</span> <span style="color:#4ade80;">SUCCESS:</span> Swapped to fallback credential set without dropping transaction socket.</div>
             <div style="color:#38bdf8; animation: pulse 1.5s infinite; margin-top:1rem;">$ awaiting downstream high-throughput processing commands... <span style="display:inline-block; width:8px; height:15px; background:#38bdf8; vertical-align:middle;"></span></div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: KIRANAFLOW -->
-    <div id="kf-app" class="tab-content reveal">
+    <div id="kf-app" class="tab-content">
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
         <p style="font-size:0.9rem; color:var(--ink2); max-width:650px;"><strong>KiranaFlow AI Engine:</strong> An unmapped multi-signal ingestion network that fuses tabular financial histories with automated YOLOv8 object-density analysis layers to calculate underwriting risks.</p>
         <div class="preview-cta-group">
@@ -816,7 +800,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       </div>
     </div>
 
-    <div class="preview-stats reveal-stagger">
+    <div class="preview-stats">
       <div class="preview-stat">
         <div class="preview-stat-num" data-count="9" data-suffix=" Async Nodes">9</div>
         <div class="preview-stat-label">InvestEdge Concurrent Agents</div>
@@ -837,7 +821,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- TICKER 2 -->
 <div class="ticker-wrap reverse" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">Agentic State Boundaries</span><span class="ticker-item">High-Throughput Parsing</span><span class="ticker-item">Explainable AI (SHAP)</span><span class="ticker-item">Graph-RAG Concepts</span><span class="ticker-item">Asynchronous Failover</span><span class="ticker-item">Data Science Pipelines</span>
@@ -845,7 +828,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- WORK EXPERIENCE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; z-index:1;">
   <section class="section" id="experience">
     <div class="section-header reveal">
@@ -867,7 +849,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
-<!-- SELECTED PROJECTS -->
 <section class="section" id="projects">
   <div class="section-header reveal">
     <span class="section-num">03</span>
@@ -875,7 +856,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
   <div class="projects-list reveal-stagger">
     
-    <!-- PROJECT 1: KIRANAFLOW AI -->
     <div class="project-item">
       <div class="project-num">01</div>
       <div>
@@ -892,7 +872,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <div class="project-arrow">↗</div>
     </div>
 
-    <!-- PROJECT 2: INVESTEDGE -->
     <div class="project-item">
       <div class="project-num">02</div>
       <div>
@@ -910,7 +889,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <div class="project-arrow">↗</div>
     </div>
 
-    <!-- PROJECT 3: AUTOSTREAM -->
     <div class="project-item">
       <div class="project-num">03</div>
       <div>
@@ -926,7 +904,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <div class="project-arrow">↗</div>
     </div>
 
-    <!-- PROJECT 4: JOBSEARCHY -->
     <div class="project-item">
       <div class="project-num">04</div>
       <div>
@@ -944,7 +921,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
       <div class="project-arrow">↗</div>
     </div>
 
-    <!-- PROJECT 5: INSIGHTFY ROUND 1 -->
     <div class="project-item">
       <div class="project-num">05</div>
       <div>
@@ -964,7 +940,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </section>
 
-<!-- JOURNEY TIMELINE -->
 <div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <section class="section" id="journey">
     <div class="section-header reveal">
@@ -977,7 +952,7 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         <div class="timeline-content">
           <div class="timeline-year">2023</div>
           <div class="timeline-title">Core Foundations at MITAOE Pune</div>
-          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development, structural algorithms, and database systems[cite: 2].</div>
+          <div class="timeline-desc">Began B.Tech track in Computer Science Engineering, prioritizing backend development, structural algorithms, and database systems.</div>
         </div>
         <div class="timeline-dot"></div>
       </div>
@@ -1013,7 +988,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </section>
 </div>
 
-<!-- RESUME CARD -->
 <div class="resume-card-wrap">
   <div class="resume-card reveal">
     <div class="resume-pdf-preview">
@@ -1041,7 +1015,6 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
   </div>
 </div>
 
-<!-- CONTACT FORM -->
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -1072,14 +1045,13 @@ footer { background: var(--ink); padding: 2rem 4rem; display: flex; justify-cont
         <label class="form-label" for="fMessage">Message</label>
         <textarea id="fMessage" class="form-textarea" rows="4" placeholder="Detail your project requirements…" required></textarea>
       </div>
-      <button type="button" class="form-submit" id="sendBtn"><span>Send Query System</span></button>
+      <button type="button" class="form-submit" id="sendBtn"><span>Let's Connect</span></button>
       <div class="form-note">Opens an integrated mail gateway window.</div>
       <div class="form-success" id="formSuccess">✓ Message sequence initiated successfully.</div>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Rushikesh <em>Baban</em> Kedar</div>
   <div class="footer-links">
