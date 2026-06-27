@@ -219,7 +219,7 @@ nav.scrolled { height: 58px; }
 .ticker-item::after { content: '◆'; color: var(--accent2); font-size: 0.6rem; margin-left: 2.5rem; }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-.about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .about-text p { font-size: 0.98rem; color: var(--ink2); margin-bottom: 1.2rem; line-height: 1.85; }
 .about-text p strong { color: var(--ink); font-weight: 500; position: relative; background: linear-gradient(180deg, transparent 65%, var(--accent-lt) 65%); padding: 0 2px; }
 .about-detail { margin-top: 2.25rem; display: flex; flex-direction: column; }
@@ -231,8 +231,25 @@ nav.scrolled { height: 58px; }
 .skills-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
 .skill-cat { margin-bottom: 1.5rem; }
 .skill-cat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-.skills-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.skill-tag { font-size: 0.78rem; padding: 0.32rem 0.8rem; border: 1px solid var(--border2); color: var(--ink2); border-radius: 2px; background: var(--surface); transition: all 0.25s; cursor: default; }
+.skills-tags { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.6rem; 
+  margin-top: 0.5rem; 
+  width: 100%; /* Ensures they stay within the parent */
+}
+
+.skill-tag { 
+  font-size: 0.78rem; 
+  padding: 0.32rem 0.8rem; 
+  border: 1px solid var(--border2); 
+  color: var(--ink2); 
+  border-radius: 4px; /* Slightly softer corners */
+  background: var(--surface); 
+  white-space: nowrap; /* Prevents text inside tags from breaking */
+  transition: all 0.25s; 
+  cursor: default; 
+}
 .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); font-weight: 500; }
 
