@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rushikesh Kedar — GenAI · Distributed Systems · Full-Stack</title>
+<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2111/2111432.png">
+<meta name="description" content="Rushikesh Kedar — GenAI, Distributed Systems & Platform Engineer. Open for freelance projects and full-time opportunities.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
@@ -150,7 +152,17 @@ nav.scrolled { height: 58px; }
 
 .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; color: var(--ink); position: relative; }
 .hero-name em { font-style: italic; color: var(--accent); position: relative; }
+/* Animation definitions */
+@keyframes fadeUp { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
 
+@keyframes fadeLeft { 
+  from { opacity: 0; transform: translateX(20px); } 
+  to { opacity: 1; transform: translateX(0); } 
+}
+   
 .word-mask { display: inline-block; overflow: hidden; vertical-align: baseline; }
 .word-mask > span { display: inline-block; transform: translateY(110%); animation: wordUp 0.9s cubic-bezier(0.25,1,0.5,1) forwards; }
 .word-mask:nth-child(1) > span { animation-delay: 0.15s; }
@@ -264,6 +276,8 @@ nav.scrolled { height: 58px; }
 .engineering-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin-top: 2rem; }
 .matrix-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
 .matrix-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+.live-badge { font-size: 0.6rem; padding: 0.2rem 0.5rem; background: var(--ok-lt); color: var(--ok); text-transform: uppercase; border-radius: 4px; }
+.win-badge { font-size: 0.6rem; padding: 0.2rem 0.5rem; background: var(--warn-lt); color: var(--warn); text-transform: uppercase; border-radius: 4px; }
 .matrix-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
 .matrix-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); }
 .matrix-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; }
@@ -309,8 +323,16 @@ nav.scrolled { height: 58px; }
 .form-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid var(--border2); padding: 0.65rem 0; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; transition: border-color 0.25s; }
 .form-input:focus, .form-textarea:focus { outline: none; border-bottom-color: var(--accent2); }
-.form-submit { margin-top: 0.5rem; padding: 0.95rem 1rem; background: var(--ink); color: var(--bg); border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; position: relative; overflow: hidden; }
-.form-submit:hover { background: var(--accent); color: var(--inverse-ink); }
+.form-submit { 
+  margin-top: 0.5rem; padding: 0.95rem 1rem; background: var(--ink); 
+  color: var(--bg); border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; 
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; 
+  transition: transform 0.2s ease, background 0.3s ease; /* ADDED THIS */
+}
+.form-submit:hover { 
+  transform: scale(1.02); /* ADDED THIS */
+  background: var(--accent); color: var(--inverse-ink); 
+}
 .form-note { font-size: 0.74rem; color: var(--muted); margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
 .form-success { padding: 0.85rem; background: var(--ok-lt); border: 1px solid var(--ok); color: var(--ok); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.3s; display: none; }
 .form-success.show { opacity: 1; display: block; }
@@ -1051,16 +1073,23 @@ document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
 document.getElementById('contact-form').addEventListener('submit', function(event) {
   event.preventDefault();
   
-  // 'service_q8sdrkl' is your Service ID, 'template_naf6d6e' is your Template ID
+  const btn = event.target.querySelector('button');
+  btn.textContent = "SENDING...";
+  btn.disabled = true;
+  
   emailjs.sendForm('service_q8sdrkl', 'template_naf6d6e', this)
     .then(function() {
       const success = document.getElementById('formSuccess');
       success.style.display = 'block';
       document.getElementById('contact-form').reset();
+      btn.textContent = "SEND MESSAGE";
+      btn.disabled = false;
       setTimeout(() => { success.style.display = 'none'; }, 4000);
     }, function(error) {
       console.error('EmailJS Error:', error);
-      alert('Transmission failed: Check your console for details.');
+      alert('Transmission failed.');
+      btn.textContent = "SEND MESSAGE";
+      btn.disabled = false;
     });
 });
 </script>
