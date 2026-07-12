@@ -1733,6 +1733,33 @@
             footer { padding: 1.5rem 1.25rem; flex-direction: column; }
             .cursor, .cursor-ring { display: none; }
         }
+
+        /* Card Spotlight Glow Animation */
+        .matrix-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 0) var(--mouse-y, 0), 
+                rgba(56, 189, 248, 0.08), 
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1;
+            border-radius: inherit;
+        }
+        
+        .matrix-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Ensure card text stays above the glow */
+        .matrix-card > div {
+            position: relative;
+            z-index: 2;
+        }
     </style>
 </head>
 
@@ -2222,6 +2249,93 @@
                     </div>
                 </div>
                 <div>
+                    <div class="matrix-card">
+      <div>
+        <div class="matrix-header">
+          <div class="matrix-title">Global Air Quality Analytics</div>
+        </div>
+        <div class="matrix-meta">Predictive Pipeline · Machine Learning</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">End-to-end data analytics pipeline predicting PM2.5 concentrations across 5 global cities. Features extensive EDA, time-series forecasting, and advanced XGBoost regression modeling.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM CONTEXT:<br>
+          ↳ XGBoost & LightGBM Regression<br>
+          ↳ Time-Series Forecasting Models<br>
+          ↳ Apriori Association Rule Mining
+        </div>
+      </div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label" style="color:var(--muted)">Stack:</span> Python · XGBoost · Scikit-Learn · Pandas · Seaborn · mlxtend</div>
+        <div style="margin-top:1rem;">
+          <a href="https://github.com/Rushi9234/Global-Air-Quality-Weather-Analytics" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div>
+        <div class="matrix-header">
+          <div class="matrix-title">RBI Inflation & Monetary Policy</div>
+        </div>
+        <div class="matrix-meta">Statistical Modeling · Macroeconomic Data</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">Empirical examination of monetary policy transmission into CPI inflation. Utilized statistical testing to identify a 5-year policy transmission delay from the RBI Repo Rate.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM CONTEXT:<br>
+          ↳ Cross-Correlation Function (CCF)<br>
+          ↳ OLS Lagged Regression<br>
+          ↳ ADF Stationarity Testing
+        </div>
+      </div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label" style="color:var(--muted)">Stack:</span> Python · Statsmodels · Pandas · Matplotlib · Seaborn</div>
+        <div style="margin-top:1rem;">
+          <a href="https://github.com/Rushi9234/RBI-Inflation-Monetary-Policy-Analysis" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div>
+        <div class="matrix-header">
+          <div class="matrix-title">Retail Sales Intelligence Platform</div>
+        </div>
+        <div class="matrix-meta">Business Intelligence · Relational Schema</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">High-fidelity BI dashboard ingesting retail datasets to deliver spatial-temporal insights, profitability tracking, and dynamic customer behavior drill-downs for stakeholders.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM CONTEXT:<br>
+          ↳ Relational 1-to-Many Schema Modeling<br>
+          ↳ Temporal DAX Intelligence<br>
+          ↳ Cross-Filtering Spatial Analytics
+        </div>
+      </div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label" style="color:var(--muted)">Stack:</span> Power BI · DAX · Power Query · Data Modeling</div>
+        <div style="margin-top:1rem;">
+          <a href="https://github.com/Rushi9234/Ecommerce-Sales-PowerBI" class="project-link" target="_blank"><span>View Profile ↗</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div>
+        <div class="matrix-header">
+          <div class="matrix-title">Enterprise HR Intelligence</div>
+        </div>
+        <div class="matrix-meta">System Architecture · ETL Pipeline</div>
+        <p class="project-desc" style="font-size: 0.88rem; color: var(--ink2);">Fully automated dashboard consolidating cross-geography databases. Engineered a macro-free architecture for tracking real-time attrition, risk management, and compliance alerts.</p>
+        <div class="matrix-spec-box">
+          ⚡ SYSTEM CONTEXT:<br>
+          ↳ Cross-Geography ETL Normalization<br>
+          ↳ Dynamic Array Logic & Guardrails<br>
+          ↳ Automated Compliance Tracking
+        </div>
+      </div>
+      <div>
+        <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label" style="color:var(--muted)">Stack:</span> Advanced Excel · Relational Modeling · ETL</div>
+        <div style="margin-top:1rem;">
+          <a href="https://github.com/Rushi9234/HR-Automation-Dashboard" class="project-link" target="_blank"><span>View Source ↗</span></a>
+        </div>
+      </div>
+    </div>
                     <div class="project-stack" style="font-size:0.75rem;"><span class="stack-label" style="color:var(--muted)">Stack:</span> Python · Hugging Face Transformers · ViT · GPT-2 · PyTorch · Gradio</div>
                     <div style="margin-top:1rem;">
                         <a href="https://github.com/Rushi9234" class="project-link" target="_blank"><span>View Profile ↗</span></a>
@@ -2557,20 +2671,26 @@
                 });
             });
 
-            // 3D Parallax Tilt Vector Math
+            
+            // 3D Parallax Tilt & Spotlight Vector Math
             const cards = document.querySelectorAll('.matrix-card');
             cards.forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
+                    
+                    // Tilt Math
                     const x = (e.clientX - rect.left) / rect.width - 0.5;
                     const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    
-                    // Map spatial coordinates to CSS rotational matrices
                     card.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${y * -12}deg) scale(1.02)`;
+                    
+                    // Spotlight Math (NEW)
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${mouseX}px`);
+                    card.style.setProperty('--mouse-y', `${mouseY}px`);
                 });
                 
                 card.addEventListener('mouseleave', () => {
-                    // Reset spatial coordinates on exit
                     card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
                 });
             });
